@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="https://goss1.vcg.com/creative/vcg/800/version23/VCG41499482947.jpg?qr=1111xss"/>
+<img src="https://goss1.vcg.com/creative/vcg/800/version23/VCG41566348885.jpg?qr=1111xss"/>
+</body>
+</html>
+<script type="text/javascript">
+    function ref() {
+        var imgel = document.getElementsByTagName('img');
+        for (var i = 0, item; item = imgel[i++];) {
+            var veridx = item.src.indexOf('&ver=');
+            var src = veridx > 0 ? item.src.substr(0, veridx) : item.src;
+            src += '&ver=' + (+new Date());
+            item.src = src;
+        }
+    }
+    setInterval(ref, 5000)
+</script>
