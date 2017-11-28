@@ -714,8 +714,8 @@ td .shangban {
     display: none;
 }
 
-.tc.tc-show{
-    display: block;
+.tc-show{
+    display: block !important;
 }
 .tc-innner {
     background: #fff;
