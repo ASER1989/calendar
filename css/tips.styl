@@ -1,0 +1,64 @@
+@import 'fn'
+*
+  margin  0
+  padding 0
+  box-sizing border-box
+header
+  height em(70)
+  background-color #fefefe
+  border-bottom solid 1px #f9f9f9
+  box-shadow 0 0 10px #f0f0f0
+  padding-top em(10)
+  user-select none
+  position fixed
+  top 0
+  left 0
+  right 0
+  z-index 99
+  h2
+    margin 0 auto
+    text-align center
+    font-size em(20)
+  div
+    text-align center
+    font-size em(13)
+    h em(26)
+.tip-content
+  margin-top em(70)
+  padding-bottom em(40)
+.tip-list
+  display block
+  list-style none
+  padding em(10) em(15)
+  >li
+    line-height  em(20);
+    text-align left
+    border-bottom solid 1px #f0f0f0
+    padding em(10) em(32) em(10) 0
+    font-size em(13)
+    color #333333
+    position relative
+    &:last-child
+      border:none;
+    >a
+      display block;
+      position absolute
+      right 0
+      top 50%
+      margin-top em(-10)
+      width em(20)
+      height em(20)
+      background url(../images/btn_del.png) no-repeat
+      background-size 100% auto
+
+footer
+  position fixed
+  bottom 0
+  left 0
+  right 0
+  h em(40)
+  text-align center
+  background-color #fefefe
+  border-top solid 1px #d0d0d0
+  font-size em(15)
+  z-index 99
