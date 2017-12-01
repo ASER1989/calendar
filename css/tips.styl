@@ -61,4 +61,60 @@ footer
   background-color #fefefe
   border-top solid 1px #d0d0d0
   font-size em(15)
-  z-index 99
+  z-index 96
+
+
+.dialog
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  background-color rgba(0, 0, 0, 0.6)
+  z-index 97
+  .dia-content
+    background-color #ffffff
+    width em(280);
+    height em(160);
+    top 50%
+    left 50%
+    position absolute
+    margin-left em(-140)
+    margin-top em(-85);
+    border-radius em(3)
+    overflow hidden
+    font-size 0
+  .dia-opt
+    border-top solid 1px #d0d0d0
+    height em(40)
+    width em(280)
+    margin 0
+    display box
+    >a
+      display block
+      width em(140)
+      h em(40)
+      text-align center
+      font-size em(14)
+      color #3c7500
+      text-decoration none
+      &:first-child
+        border-right solid 1px #d0d0d0
+        color #707070
+
+.input-dia-ctx
+  border: 0;
+  resize: none;
+  outline: 0;
+  z-index: 3;
+  color: #333;
+  overflow: hidden;
+  padding em(10) em(10)
+  width em(280)
+  height em(120)
+  background-color #fafafa
+  margin 0
+  font-size em(14)
+
+.hide
+  display none !important

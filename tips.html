@@ -31,9 +31,18 @@
         <li>下午7点2017长期合作伙伴晚宴 <a href=""></a> </li>
     </ul>
 </section>
-<footer>
+<footer data-click="showDialog">
     添加提醒
 </footer>
+<section class="dialog hide">
+    <section class="dia-content">
+        <textarea class="input-dia-ctx" placeholder="请输入提醒内容！"></textarea>
+        <div class="dia-opt">
+            <a href="javascript:void(0)" data-click="cancel">取消</a>
+            <a href="javascript:void(0)" data-click="submit">保存</a>
+        </div>
+    </section>
+</section>
 <script src="js/lib/me.require.js"></script>
 <script type="text/javascript">
     require(['./js/lib/zepto.js',
@@ -42,8 +51,34 @@
         function () {
             var pagezoom = new zoom($);
             pagezoom.calc(function () {
-
-
+                var els={
+                    dialog:$(".dialog"),
+                    diaTxt:$(".dialog .input-dia-ctx")
+                }
+                var event={
+                    init:function () {
+                        var clicks = $("[data-click]");
+                        bind(clicks, "click");
+                        function bind(els, type) {
+                            for (var i = 0, el; el = els[i++];) {
+                                el = $(el);
+                                el.on(type, event[el.attr("data-" + type)]);
+                            }
+                        }
+                    },
+                    cancel:function () {
+                        els.dialog.addClass('hide');
+                        els.diaTxt.val('');
+                    },
+                    submit:function () {
+                        els.dialog.addClass('hide');
+                        els.diaTxt.val('');
+                    },
+                    showDialog:function () {
+                        els.dialog.removeClass('hide');
+                    }
+                }
+                event.init();
 
             });
             $(window).on('resize', pagezoom.calc);
