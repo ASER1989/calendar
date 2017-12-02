@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>账簿</title>
+    <link rel="stylesheet" href="css/note.css">
+
+</head>
+<body>
+<header>
+    <h2>2017年12月12日</h2>
+    <div>星期二 十月廿五</div>
+</header>
+<section class="note-content">
+    <ul class="note-list">
+        <li>
+            <em class="in">[收入]</em>
+            <div class="note-price ellipsis">+130000</div>
+            <div class="note-remark">公司12月营销奖金</div>
+            <a href=""></a>
+        </li>
+        <li>
+            <em>[支出]</em>
+            <div class="note-price ellipsis">-1300</div>
+            <div class="note-remark">赠送销售经理小刘派克钢笔</div>
+            <a href=""></a>
+        </li>
+    </ul>
+</section>
+<footer data-click="showDialog">
+    添加收支记录
+</footer>
+<section id="_note_form" class="dialog hide">
+    <section class="dia-content">
+        <div class="input-dia-form">
+            <div>
+                <label>类型：</label>
+                <select>
+                    <option value="0">收入</option>
+                    <option value="1">支出</option>
+                </select>
+            </div>
+            <div>
+                <label>金额：</label>
+                <input type="number" value="" placeholder="请输入收支金额">
+            </div>
+            <div>
+                <label>备注：</label>
+                <textarea class="input-dia-remark" placeholder="请输入备注"></textarea>
+            </div>
+        </div>
+
+        <div class="dia-opt">
+            <a href="javascript:void(0)" data-click="cancel">取消</a>
+            <a href="javascript:void(0)" data-click="submit">保存</a>
+        </div>
+    </section>
+</section>
+<section class="note-types">
+    <section class="note-type-header">
+        <select>
+            <option value="">收入</option>
+        </select>
+    </section>
+    <ul class="note-type-list">
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+        <li>
+            <div>
+                <img src="./images/icons/eat1.png" alt="">
+            </div>
+            <em>餐饮</em>
+        </li>
+
+    </ul>
+</section>
+<script src="js/lib/me.require.js"></script>
+<script type="text/javascript">
+    require(['./js/lib/zepto.js',
+            './js/lib/zoom.js',
+            './js/lib/underscore.js'],
+        function () {
+            var pagezoom = new zoom($);
+            pagezoom.calc(function () {
+                var els = {
+                    dialog: $("#_note_form"),
+                    diaTxt: $(".dialog .input-dia-ctx")
+                }
+                var event = {
+                    init: function () {
+                        var clicks = $("[data-click]");
+                        bind(clicks, "click");
+                        function bind(els, type) {
+                            for (var i = 0, el; el = els[i++];) {
+                                el = $(el);
+                                el.on(type, event[el.attr("data-" + type)]);
+                            }
+                        }
+                    },
+                    cancel: function () {
+                        els.dialog.addClass('hide');
+                        els.diaTxt.val('');
+                    },
+                    submit: function () {
+                        els.dialog.addClass('hide');
+                        els.diaTxt.val('');
+                    },
+                    showDialog: function () {
+                        els.dialog.removeClass('hide');
+                    }
+                }
+                event.init();
+
+            });
+            $(window).on('resize', pagezoom.calc);
+        });
+</script>
+</body>
+</html>

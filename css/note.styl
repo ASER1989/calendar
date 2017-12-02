@@ -1,0 +1,222 @@
+@import 'fn'
+*
+  margin  0
+  padding 0
+  box-sizing border-box
+header
+  height em(70)
+  background-color #fefefe
+  border-bottom solid 1px #f9f9f9
+  box-shadow 0 0 10px #f0f0f0
+  padding-top em(10)
+  user-select none
+  position fixed
+  top 0
+  left 0
+  right 0
+  z-index 99
+  h2
+    margin 0 auto
+    text-align center
+    font-size em(20)
+  div
+    text-align center
+    font-size em(13)
+    h em(26)
+.note-content
+  margin-top em(70)
+  padding-bottom em(40)
+.note-list
+  display block
+  list-style none
+  padding em(10) em(15)
+  >li
+    line-height  em(20);
+    text-align left
+    border-bottom solid 1px #f0f0f0
+    padding em(10) em(32)
+    font-size em(13)
+    color #333333
+    position relative
+    display box
+    box-align:center
+    &:last-child
+      border:none;
+    >em
+      color: #f00;
+      font-style: normal;
+      position: absolute;
+      left: em(-8);
+      top: 50%;
+      margin-top: em(-10);
+      height: em(20);
+      width: em(40);
+      &.in
+        color darkgreen
+    >a
+      display block;
+      position absolute
+      right 0
+      top 50%
+      margin-top em(-10)
+      width em(20)
+      height em(20)
+      background url(../images/btn_del.png) no-repeat
+      background-size 100% auto
+  .note-price
+    width em(80)
+  .note-remark
+    width em(146)
+    color #707070
+    padding-left em(5)
+footer
+  position fixed
+  bottom 0
+  left 0
+  right 0
+  h em(40)
+  text-align center
+  background-color #fefefe
+  border-top solid 1px #d0d0d0
+  font-size em(15)
+  z-index 96
+
+
+.dialog
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  background-color rgba(0, 0, 0, 0.6)
+  z-index 97
+  .dia-content
+    background-color #ffffff
+    width em(280);
+    height em(160);
+    top 50%
+    left 50%
+    position absolute
+    margin-left em(-140)
+    margin-top em(-85);
+    border-radius em(3)
+    overflow hidden
+    font-size 0
+  .dia-opt
+    border-top solid 1px #d0d0d0
+    height em(40)
+    width em(280)
+    margin 0
+    display box
+    >a
+      display block
+      width em(140)
+      h em(40)
+      text-align center
+      font-size em(14)
+      color #3c7500
+      text-decoration none
+      &:first-child
+        border-right solid 1px #d0d0d0
+        color #707070
+
+.input-dia-form
+  border: 0;
+  resize: none;
+  outline: 0;
+  z-index: 3;
+  color: #333;
+  overflow: hidden;
+  padding em(10) em(10)
+  width em(280)
+  height em(120)
+  background-color #fafafa
+  margin 0
+  font-size em(14)
+  >div
+    margin-top em(3)
+  select,input
+    width: em(180);
+    border: solid 1px #f0f0f0;
+    background-color: #fafafa;
+    color: #505050;
+    padding: em(1) em(3);
+    border-radius: em(3);
+  label
+    vertical-align top
+.input-dia-remark
+  border: solid 1px #f0f0f0;
+  resize: none;
+  outline: 0;
+  z-index: 3;
+  color: #333;
+  overflow: hidden;
+  padding em(5) em(5)
+  width em(180);
+  height em(52)
+  background-color #fafafa
+  margin 0
+  font-size em(13)
+.note-types
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+  background-color #ffffff
+  z-index 100
+  overflow-x: hidden
+  overflow-y: auto
+.note-type-header
+  position fixed
+  left 0
+  right 0
+  background: #57abff;
+  height: em(44);
+  padding: 0 3%;
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  flex-wrap: wrap;
+  align-items: center;
+  color: #fff;
+  box-shadow: 0 0 10px #57abff;
+  >select
+    margin 0 auto
+    border 0
+    font-size em(16)
+    vertical-align middle
+    background-color #57abff
+.note-type-list
+  display block
+  list-style none;
+  margin-top em(44);
+  width em(320)
+  padding em(10) em(20)
+  font-size 0
+  >li
+    width em(70)
+    height @width
+    display inline-block
+    box-sizing border-box
+    margin-top em(13)
+    >div
+      margin auto
+      width em(46)
+      h @width
+      background-color #f9f9f9
+      border-radius em(46)
+      text-align center
+      >img
+        max-width em(46)
+        vertical-align middle
+    >em
+      font-style normal
+      font-size em(12)
+      width 100%
+      text-align center
+      display block
+      margin-top em(3)
+      color #707070
+.hide
+  display none !important

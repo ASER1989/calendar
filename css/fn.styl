@@ -23,7 +23,8 @@ transition()
   vendor('transition', arguments)
 user-select()
   vendor('user-select',arguments)
-
+box-align()
+  vendor('box-align',arguments)
 h()
   height arguments
   line-height arguments
@@ -33,5 +34,12 @@ wh()
 
 em(v)
   return (v/16) rem
+
+.ellipsis
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: nowrap
 //em(v)
 //  return (v*750/320)rpx
