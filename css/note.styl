@@ -89,7 +89,7 @@ footer
   right 0
   bottom 0
   background-color rgba(0, 0, 0, 0.6)
-  z-index 97
+  z-index 101
   .dia-content
     background-color #ffffff
     width em(280);
@@ -134,12 +134,15 @@ footer
   margin 0
   font-size em(14)
   >div
-    margin-top em(3)
+    margin em(3) 0
+    padding-bottom em(5)
   select,input
     width: em(180);
+    height em(26)
     border: solid 1px #f0f0f0;
     background-color: #fafafa;
-    color: #505050;
+    color: #333;
+    font-size em(13)
     padding: em(1) em(3);
     border-radius: em(3);
   label
@@ -153,10 +156,11 @@ footer
   overflow: hidden;
   padding em(5) em(5)
   width em(180);
-  height em(52)
+  height em(60)
   background-color #fafafa
   margin 0
   font-size em(13)
+  border-radius em(3)
 .note-types
   position absolute
   top 0
@@ -187,6 +191,10 @@ footer
     font-size em(16)
     vertical-align middle
     background-color #57abff
+  >a
+    color #000000
+    font-size em(13)
+    text-decoration none
 .note-type-list
   display block
   list-style none;

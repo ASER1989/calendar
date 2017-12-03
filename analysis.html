@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>收支分析</title>
+    <link rel="stylesheet" href="css/analysis.css">
+</head>
+<body>
+<header>
+    <h2>2017年12月12日</h2>
+    <div>星期二 十月廿五</div>
+</header>
+<section id="analysis-box" class="analysis">
+
+</section>
+
+<section class="dialog hide">
+    <section class="dia-content">
+        <textarea class="input-dia-ctx" placeholder="请输入提醒内容！"></textarea>
+        <div class="dia-opt">
+            <a href="javascript:void(0)" data-click="cancel">取消</a>
+            <a href="javascript:void(0)" data-click="submit">保存</a>
+        </div>
+    </section>
+</section>
+<script src="js/lib/me.require.js"></script>
+<script type="text/javascript">
+    require(['./js/lib/zepto.js',
+            './js/lib/zoom.js',
+            './js/lib/echarts.min.js'],
+        function () {
+            var pagezoom = new zoom($);
+            pagezoom.calc(function () {
+                var myChart = echarts.init(document.getElementById('analysis-box'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '收支分析'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data:['金额']
+                    },
+                    xAxis: {
+                        data: ["餐饮","购物","日用","通讯","娱乐","零食"]
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: '开销',
+                        type: 'bar',
+                        data: [535, 2000, 363, 300, 1600, 600]
+                    }]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            });
+            $(window).on('resize', pagezoom.calc);
+        });
+</script>
+</body>
+</html>

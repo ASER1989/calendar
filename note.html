@@ -32,19 +32,19 @@
         </li>
     </ul>
 </section>
-<footer data-click="showDialog">
+<footer data-click="showTypes">
     添加收支记录
 </footer>
 <section id="_note_form" class="dialog hide">
     <section class="dia-content">
         <div class="input-dia-form">
-            <div>
-                <label>类型：</label>
-                <select>
-                    <option value="0">收入</option>
-                    <option value="1">支出</option>
-                </select>
-            </div>
+            <!--<div>-->
+                <!--<label>类型：</label>-->
+                <!--<select>-->
+                    <!--<option value="0">收入</option>-->
+                    <!--<option value="1">支出</option>-->
+                <!--</select>-->
+            <!--</div>-->
             <div>
                 <label>金额：</label>
                 <input type="number" value="" placeholder="请输入收支金额">
@@ -61,11 +61,13 @@
         </div>
     </section>
 </section>
-<section class="note-types">
+<section class="note-types hide">
     <section class="note-type-header">
         <select>
             <option value="">收入</option>
+            <option value="">支出</option>
         </select>
+        <a href="javascript:void(0);" data-click="typesHide">取消</a>
     </section>
     <ul class="note-type-list">
         <li>
@@ -159,7 +161,8 @@
             pagezoom.calc(function () {
                 var els = {
                     dialog: $("#_note_form"),
-                    diaTxt: $(".dialog .input-dia-ctx")
+                    diaTxt: $(".dialog .input-dia-ctx"),
+                    typesEl:$(".note-types")
                 }
                 var event = {
                     init: function () {
@@ -180,11 +183,23 @@
                         els.dialog.addClass('hide');
                         els.diaTxt.val('');
                     },
-                    showDialog: function () {
+                    showDialog:function () {
                         els.dialog.removeClass('hide');
+                    },
+                    showTypes: function () {
+                        els.typesEl.removeClass('hide');
+                    },
+                    typesHide:function () {
+                        els.typesEl.addClass('hide');
+                    },
+                    eventBind:function () {
+                        $(".note-type-list li").on("click",function () {
+                            event.showDialog();
+                        });
                     }
                 }
                 event.init();
+                event.eventBind();
 
             });
             $(window).on('resize', pagezoom.calc);

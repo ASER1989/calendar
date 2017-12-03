@@ -982,3 +982,27 @@ td .shangban {
     font-size: .3rem;
     padding-right:3px;
 }
+footer{
+    height:.5rem;
+    width:100%;
+    position: fixed;
+    bottom:0;
+    -webkit-box-shadow: 0 0 10px #f0f0f0;
+    -moz-box-shadow: 0 0 10px #f0f0f0;
+    box-shadow: 0 0 10px #f0f0f0;
+    display: box;
+    display: -moz-box;
+    display: -webkit-box;
+    box-sizing: border-box;
+}
+footer a{
+    display: block;
+    width:50%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    text-align: center;
+    line-height: .5rem;
+}
+footer a:first-child{
+    border-right:solid 1px #f9f9f9
+}

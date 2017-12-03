@@ -1,0 +1,113 @@
+@import 'fn'
+*
+  margin  0
+  padding 0
+  box-sizing border-box
+header
+  height em(70)
+  background-color #fefefe
+  border-bottom solid 1px #f9f9f9
+  box-shadow 0 0 10px #f0f0f0
+  padding-top em(10)
+  user-select none
+  position fixed
+  top 0
+  left 0
+  right 0
+  z-index 99
+  h2
+    margin 0 auto
+    text-align center
+    font-size em(20)
+  div
+    text-align center
+    font-size em(13)
+    h em(26)
+.tip-content
+  margin-top em(70)
+  padding-bottom em(40)
+.tip-list
+  display block
+  list-style none
+  padding em(10) em(15)
+  >li
+    line-height  em(20);
+    text-align left
+    border-bottom solid 1px #f0f0f0
+    padding em(10) em(32) em(10) 0
+    font-size em(13)
+    color #333333
+    position relative
+    &:last-child
+      border:none;
+    >a
+      display block;
+      position absolute
+      right 0
+      top 50%
+      margin-top em(-10)
+      width em(20)
+      height em(20)
+      background url(../images/btn_del.png) no-repeat
+      background-size 100% auto
+
+
+.dialog
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+  background-color rgba(0, 0, 0, 0.6)
+  z-index 97
+  .dia-content
+    background-color #ffffff
+    width em(280);
+    height em(160);
+    top 50%
+    left 50%
+    position absolute
+    margin-left em(-140)
+    margin-top em(-85);
+    border-radius em(3)
+    overflow hidden
+    font-size 0
+  .dia-opt
+    border-top solid 1px #d0d0d0
+    height em(40)
+    width em(280)
+    margin 0
+    display box
+    >a
+      display block
+      width em(140)
+      h em(40)
+      text-align center
+      font-size em(14)
+      color #3c7500
+      text-decoration none
+      &:first-child
+        border-right solid 1px #d0d0d0
+        color #707070
+
+.input-dia-ctx
+  border: 0;
+  resize: none;
+  outline: 0;
+  z-index: 3;
+  color: #333;
+  overflow: hidden;
+  padding em(10) em(10)
+  width em(280)
+  height em(120)
+  background-color #fafafa
+  margin 0
+  font-size em(14)
+
+.hide
+  display none !important
+
+.analysis
+  margin em(90) auto 0 auto
+  width 20rem
+  height em(256)
