@@ -541,9 +541,10 @@ function bind_click(a) {
 
 function set_top(a) {
     if (!a) {
-        var weeks = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
+        var weeks = ['星期日','星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
         var data = new Date();
-        var weekk = weeks[data.getDay() - 1];
+        // console.log(data.getDay())
+        var weekk = weeks[data.getDay()];
         var ms = data.getMonth();
         var ljson = calendar.solar2lunar(data.getFullYear(), ms + 1, data.getDate())
         var yue = ljson.IMonthCn + ljson.IDayCn;
@@ -552,6 +553,7 @@ function set_top(a) {
         sev_d = parseInt(shu);
         document.getElementById("top_week").innerHTML = weekk;
         document.getElementById("top_yue").innerHTML = yue;
+
     } else {
         var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
         var y = a.attr("data_y");
