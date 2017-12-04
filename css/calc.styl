@@ -70,9 +70,12 @@ html
   border solid 1px #e3e3e3
 /* Remove right margins from operator keys */
 /* style different type of keys (operators/evaluate/clear) differently */
+
 .keys span.operator
   background: #FFF0F5;
   margin-right: 0;
+  &.keys-opt
+    margin: 0 em(7) em(21) 0 !important
 
 .keys span.eval
   background: #f1ff92;
