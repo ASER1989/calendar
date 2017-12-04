@@ -4,13 +4,25 @@ var gulp = require('gulp'),
     cssmin = require("gulp-minify-css"),
     livereload = require('gulp-livereload'),
     minifyHtml = require("gulp-minify-html"),
+    htmlmin = require('gulp-htmlmin'),
     del = require('del');
 
 
 gulp.task('minall',['clear'], function () {
+    var options = {
+        removeComments: true,  //清除HTML注释
+        collapseWhitespace: true,  //压缩HTML
+        collapseBooleanAttributes: true,  //省略布尔属性的值 <input checked="true"/> ==> <input checked />
+        removeEmptyAttributes: true,  //删除所有空格作属性值 <input id="" /> ==> <input />
+        removeScriptTypeAttributes: true,  //删除<script>的type="text/javascript"
+        removeStyleLinkTypeAttributes: true,  //删除<style>和<link>的type="text/css"
+        minifyJS: true,  //压缩页面JS
+        minifyCSS: true  //压缩页面CSS
+    };
+
     gulp.src(['**/*.html', '!build/**/*.html', '!node_modules/**/*.html'])
         // .pipe(del('build/'))
-        .pipe(minifyHtml()) //压缩
+        .pipe(htmlmin(options)) //压缩
         .pipe(gulp.dest('build/'));
     gulp.src([
         '**/*.js',

@@ -242,6 +242,7 @@ footer {
   font-size: 1rem;
   vertical-align: middle;
   background-color: #57abff;
+  -webkit-appearance: menulist-button;
 }
 .note-type-header >a {
   color: #000;
