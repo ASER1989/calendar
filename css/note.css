@@ -12,8 +12,8 @@
 }
 header {
   height: 4.375rem;
-  background-color: #fefefe;
-  border-bottom: solid 1px #f9f9f9;
+  background-color: #fafafa;
+  border-bottom: solid 1px #e3e3e3;
   -webkit-box-shadow: 0 0 10px #f0f0f0;
   -moz-box-shadow: 0 0 10px #f0f0f0;
   box-shadow: 0 0 10px #f0f0f0;
@@ -109,6 +109,18 @@ footer {
   border-top: solid 1px #d0d0d0;
   font-size: 0.9375rem;
   z-index: 96;
+  display: box;
+  display: -moz-box;
+  display: -webkit-box;
+}
+footer >a {
+  display: block;
+  width: 50%;
+  text-decoration: none;
+  color: #333;
+}
+footer >a:first-child {
+  border-right: solid 1px #d0d0d0;
 }
 .dialog {
   position: fixed;
