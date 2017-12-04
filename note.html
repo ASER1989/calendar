@@ -63,7 +63,8 @@
 </section>
 <section class="note-types hide">
     <section class="note-type-header">
-        <select>
+        <div>收入</div>
+        <select data-change="typeChange">
             <option value="">收入</option>
             <option value="">支出</option>
         </select>
@@ -166,8 +167,10 @@
                 }
                 var event = {
                     init: function () {
-                        var clicks = $("[data-click]");
+                        var clicks = $("[data-click]"),changes=$("[data-change]");
+
                         bind(clicks, "click");
+                        bind(changes, "change");
                         function bind(els, type) {
                             for (var i = 0, el; el = els[i++];) {
                                 el = $(el);
@@ -191,6 +194,10 @@
                     },
                     typesHide:function () {
                         els.typesEl.addClass('hide');
+                    },
+                    typeChange:function () {
+                        var txt =$(this).find("option").not(function(){ return !this.selected }).text();
+                        $(this).parents('.note-type-header').find("div").html(txt);
                     },
                     eventBind:function () {
                         $(".note-type-list li").on("click",function () {

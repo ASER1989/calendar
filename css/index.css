@@ -987,13 +987,15 @@ footer{
     width:100%;
     position: fixed;
     bottom:0;
-    -webkit-box-shadow: 0 0 10px #f0f0f0;
-    -moz-box-shadow: 0 0 10px #f0f0f0;
-    box-shadow: 0 0 10px #f0f0f0;
+    -webkit-box-shadow: 0 0 10px #e0e0e0;
+    -moz-box-shadow: 0 0 10px #e0e0e0;
+    box-shadow: 0 0 10px #e0e0e0;
     display: box;
     display: -moz-box;
     display: -webkit-box;
     box-sizing: border-box;
+    z-index: 999;
+    background-color: #ffffff;
 }
 footer a{
     display: block;
@@ -1004,5 +1006,5 @@ footer a{
     line-height: .5rem;
 }
 footer a:first-child{
-    border-right:solid 1px #f9f9f9
+    border-right:solid 1px #f0f0f0
 }
