@@ -1,0 +1,2 @@
+@echo off
+npm install --save-dev gulp-concat & npm install --save-dev gulp-uglify  & npm install --save-dev gulp-minify-css  & npm install --save-dev gulp-livereload  & npm install --save-dev gulp-minify-html & npm install --save-dev del
