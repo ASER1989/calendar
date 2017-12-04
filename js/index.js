@@ -541,7 +541,7 @@ function bind_click(a) {
 
 function set_top(a) {
     if (!a) {
-        var weeks = ['星期日','星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+        var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
         var data = new Date();
         // console.log(data.getDay())
         var weekk = weeks[data.getDay()];
@@ -1293,7 +1293,7 @@ $(function () {
         jump(srt[0], srt[1], srt[2]);
         $(".jie").hide();
     });
-
+    msgAutoScroll()
 });
 $('.jia').on('click', function () {
     $("#yyyyJia").html(sev_y);
@@ -1522,4 +1522,32 @@ function changeCld() {
         }
     }
     $("#appDateText").html(appDate);
+}
+
+function msgAutoScroll() {
+
+    var el = $(".day-right>div"),
+        warpH = $(".day-right").height(),
+        ctxH = $(".day-right>div").height(),
+        itemH = $(".day-right>div>p").height();
+    var offset = ctxH - warpH, transVal = 0;
+
+    function atoscroll() {
+
+
+        transVal = Math.abs(transVal) >= offset ? 0 : transVal - itemH;
+
+        el.css({
+            "transform": "translateY(" + transVal + 'px)',
+            "-webkit-transform": "translateY(" + transVal + 'px)',
+            "-moz-transform": "translateY(" + transVal + 'px)'
+        });
+
+        setTimeout(atoscroll, 3000);
+    }
+
+    if (offset > 0) {
+        atoscroll();
+    }
+
 }

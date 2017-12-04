@@ -151,7 +151,7 @@
 
 .day-right {
     display: block;
-    overflow-y: auto;
+    /*overflow-y: auto;*/
     flex: 0;
     flex-grow: 0;
     flex-shrink: 0;
@@ -164,10 +164,16 @@
     justify-content: flex-end;
     -webkit-justify-content: flex-end;
     -ms-justify-content: flex-end;
-    max-height:.77rem;
-    padding:3px 0;
+    max-height: .77rem;
+    padding: 3px 0;
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
+}
+
+.day-right > div {
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
 
 }
 
@@ -714,9 +720,10 @@ td .shangban {
     display: none;
 }
 
-.tc-show{
+.tc-show {
     display: block !important;
 }
+
 .tc-innner {
     background: #fff;
     width: 3.05rem;
@@ -980,13 +987,14 @@ td .shangban {
 
 .day-now {
     font-size: .3rem;
-    padding-right:3px;
+    padding-right: 3px;
 }
-footer{
-    height:.5rem;
-    width:100%;
+
+footer {
+    height: .5rem;
+    width: 100%;
     position: fixed;
-    bottom:0;
+    bottom: 0;
     -webkit-box-shadow: 0 0 10px #e0e0e0;
     -moz-box-shadow: 0 0 10px #e0e0e0;
     box-shadow: 0 0 10px #e0e0e0;
@@ -997,14 +1005,16 @@ footer{
     z-index: 999;
     background-color: #ffffff;
 }
-footer a{
+
+footer a {
     display: block;
-    width:50%;
+    width: 50%;
     box-sizing: border-box;
     background-color: #ffffff;
     text-align: center;
     line-height: .5rem;
 }
-footer a:first-child{
-    border-right:solid 1px #f0f0f0
+
+footer a:first-child {
+    border-right: solid 1px #f0f0f0
 }
