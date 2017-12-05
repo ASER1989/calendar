@@ -319,6 +319,7 @@ footer >a:first-child {
   -moz-border-radius: 2.875rem;
   border-radius: 2.875rem;
   text-align: center;
+  overflow: hidden;
 }
 .note-type-list >li >div >img {
   max-width: 2.875rem;

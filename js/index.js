@@ -1169,8 +1169,8 @@ var calendar = {
 //     "0504 青年节", "0601 儿童节", "0701 建党节",
 //     "0801 建军节", "0910 教师节", "1001 国庆节", "1031 万圣节", "1111 光棍节",
 //     "1224 平安夜", "1225 圣诞节")
-var sFtv =[];
-    function getgjq(yy, mm, dd) {
+var sFtv = [];
+function getgjq(yy, mm, dd) {
     //公历节日
     for (i in sFtv) {
         if (sFtv[i].match(/^(\d{2})(\d{2})([\s\*])(.+)$/))
@@ -1243,7 +1243,8 @@ var wFtv = new Array(
     "1144 感恩节")
 
 //国家规定假 *公司福利假
-var jFtv =[]; new Array(
+var jFtv = [];
+new Array(
     "20170101 ",
     "20170102 ",
     "20170122*",
@@ -1551,4 +1552,9 @@ function msgAutoScroll() {
         atoscroll();
     }
 
+}
+var idxCtrl = {
+    to: function (page) {
+        window.location = page + "?y=" + sev_y + '-' + sev_m + '-' + sev_d;
+    }
 }

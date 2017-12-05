@@ -67,8 +67,8 @@
     <section class="note-type-header">
         <div>收入</div>
         <select data-change="typeChange">
-            <option value="">收入</option>
-            <option value="">支出</option>
+            <option value="1">收入</option>
+            <option value="2">支出</option>
         </select>
         <a href="javascript:void(0);" data-click="typesHide">取消</a>
     </section>
@@ -79,85 +79,24 @@
             </div>
             <em>餐饮</em>
         </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
 
     </ul>
 </section>
+<script type="text/html" id="__type_list_temp">
+    <%for(var i=0,item;item=data[i++];){%>
+    <li>
+        <div>
+            <img src="<%=_config.resHost%><%=item.typeicon%>" alt="">
+        </div>
+        <em><%=item.typename%></em>
+    </li>
+    <%}%>
+</script>
 <script src="js/lib/me.require.js"></script>
 <script type="text/javascript">
     require(['./js/lib/zepto.js',
             './js/lib/zoom.js',
+            './js/site.config.js',
             './js/lib/underscore.js'],
         function () {
             var pagezoom = new zoom($);
@@ -193,6 +132,7 @@
                     },
                     showTypes: function () {
                         els.typesEl.removeClass('hide');
+                        ctrl.loadNoteType(1);
                     },
                     typesHide:function () {
                         els.typesEl.addClass('hide');
@@ -200,13 +140,37 @@
                     typeChange:function () {
                         var txt =$(this).find("option").not(function(){ return !this.selected }).text();
                         $(this).parents('.note-type-header').find("div").html(txt);
+                        var val = $(this).val();
+                        ctrl.loadNoteType(val);
+
                     },
                     eventBind:function () {
                         $(".note-type-list li").on("click",function () {
                             event.showDialog();
                         });
                     }
+                };
+                var temp={
+                    typesTemp:_.template($("#__type_list_temp").html())
                 }
+                var ctrl={
+                    date:GetQueryStr('y'),
+                    loadNoteType:function (val) {
+//                        $.ajax({
+//                            url:'/charge/chargetlist',
+//                            data:{typeid:val,cupage:1},
+//                            type:"post",
+//                            success:function (data) {
+//                                console.log(data)
+//
+//                            }
+//                        });
+                        var data ='{"status":0,"data":[{"id":"1","typename":"\u5403\u996d","typeicon":"\/upload\/images\/20171204\/151234958878834.jpg","datatype":"1"}],"msg":""}';
+                        data= JSON.parse(data);
+                        $(".note-type-list").html(temp.typesTemp(data));
+                    }
+                }
+                console.log(ctrl.date);
                 event.init();
                 event.eventBind();
 
