@@ -147,6 +147,7 @@
     -webkit-flex-grow: 0;
     -webkit-flex-shrink: 0;
     -webkit-flex-basis: 36%;
+    min-width:1.7rem;
 }
 
 .day-right {
@@ -1017,4 +1018,10 @@ footer a {
 
 footer a:first-child {
     border-right: solid 1px #f0f0f0
+}
+.top-nongli{
+    position: relative;
+}
+.top-nongli:before{
+    content: '阴历:';
 }
