@@ -18,43 +18,37 @@
 </header>
 <section class="note-content">
     <ul class="note-list">
-        <li>
-            <em class="in">[收入]</em>
-            <div class="note-price ellipsis">+130000</div>
-            <div class="note-remark">公司12月营销奖金</div>
-            <a href=""></a>
-        </li>
-        <li>
-            <em>[支出]</em>
-            <div class="note-price ellipsis">-1300</div>
-            <div class="note-remark">赠送销售经理小刘派克钢笔</div>
-            <a href=""></a>
-        </li>
+        <div class="align-center">正在加载...</div>
+        <!--<li>-->
+        <!--<em class="in">[收入]</em>-->
+        <!--<div class="note-price ellipsis">+130000</div>-->
+        <!--<div class="note-remark">公司12月营销奖金</div>-->
+        <!--<a href=""></a>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<em>[支出]</em>-->
+        <!--<div class="note-price ellipsis">-1300</div>-->
+        <!--<div class="note-remark">赠送销售经理小刘派克钢笔</div>-->
+        <!--<a href=""></a>-->
+        <!--</li>-->
     </ul>
 </section>
 <footer>
     <a href="./analysis.html">收支统计</a>
-    <a href="javascript:void(0)"  data-click="showTypes">添加收支记录</a>
+    <a href="javascript:void(0)" data-click="showTypes">添加收支记录</a>
 
 </footer>
 <section id="_note_form" class="dialog hide">
     <section class="dia-content">
         <div class="input-dia-form">
-            <!--<div>-->
-                <!--<label>类型：</label>-->
-                <!--<select>-->
-                    <!--<option value="0">收入</option>-->
-                    <!--<option value="1">支出</option>-->
-                <!--</select>-->
-            <!--</div>-->
             <div>
                 <label>金额：</label>
-                <input type="number" value="" placeholder="请输入收支金额">
+                <input id="_form_amt" type="number" value="" placeholder="请输入收支金额">
             </div>
-            <div>
-                <label>备注：</label>
-                <textarea class="input-dia-remark" placeholder="请输入备注"></textarea>
-            </div>
+            <!--<div>-->
+            <!--<label>备注：</label>-->
+            <!--<textarea class="input-dia-remark" placeholder="请输入备注"></textarea>-->
+            <!--</div>-->
         </div>
 
         <div class="dia-opt">
@@ -74,17 +68,31 @@
     </section>
     <ul class="note-type-list">
         <!--<li>-->
-            <!--<div>-->
-                <!--<img src="./images/icons/eat1.png" alt="">-->
-            <!--</div>-->
-            <!--<em>餐饮</em>-->
+        <!--<div>-->
+        <!--<img src="./images/icons/eat1.png" alt="">-->
+        <!--</div>-->
+        <!--<em>餐饮</em>-->
         <!--</li>-->
-        <div>正在加载...</div>
+
     </ul>
+    <div class="loading">正在加载...</div>
 </section>
-<script type="text/html" id="__type_list_temp">
+<script type="text/html" id="__note_list_temp">
     <%for(var i=0,item;item=data[i++];){%>
     <li>
+        <em class="<%=item.usemoney>0?'in':''%>">[<%=item.usemoney>0?'收入':'支出'%>]</em>
+        <div class="note-price ellipsis"><%=item.usemoney%></div>
+        <div class="note-remark"><%=item.chargetype%></div>
+        <a href="javascript:void(0);" data-id="<%=item.id%>" data-click="noteDel"></a>
+    </li>
+    <%}%>
+    <%if(data==null || data.length==0){%>
+    <li class="align-center">暂无记录</li>
+    <%}%>
+</script>
+<script type="text/html" id="__type_list_temp">
+    <%for(var i=0,item;item=data[i++];){%>
+    <li data-id="<%=item.id%>" data-click="showAdd">
         <div>
             <img src="<%=_config.resHost%><%=item.typeicon%>" alt="">
         </div>
@@ -104,18 +112,21 @@
                 var els = {
                     dialog: $("#_note_form"),
                     diaTxt: $(".dialog .input-dia-ctx"),
-                    typesEl:$(".note-types")
+                    typesEl: $(".note-types"),
+                    typeLoad: $(".loading"),
+                    formAmt: $("#_form_amt"),
+                    noteList: $(".note-list")
                 }
                 var event = {
                     init: function () {
-                        var clicks = $("[data-click]"),changes=$("[data-change]");
+                        var clicks = $("[data-click]"), changes = $("[data-change]");
 
                         bind(clicks, "click");
                         bind(changes, "change");
                         function bind(els, type) {
                             for (var i = 0, el; el = els[i++];) {
                                 el = $(el);
-                                el.on(type, event[el.attr("data-" + type)]);
+                                el.off().on(type, event[el.attr("data-" + type)]);
                             }
                         }
                     },
@@ -124,51 +135,117 @@
                         els.diaTxt.val('');
                     },
                     submit: function () {
-                        els.dialog.addClass('hide');
-                        els.diaTxt.val('');
+                        ctrl.addNote();
+//                        els.dialog.addClass('hide');
+//                        els.diaTxt.val('');
                     },
-                    showDialog:function () {
+                    showDialog: function () {
                         els.dialog.removeClass('hide');
                     },
                     showTypes: function () {
                         els.typesEl.removeClass('hide');
                         ctrl.loadNoteType(1);
                     },
-                    typesHide:function () {
+                    typesHide: function () {
                         els.typesEl.addClass('hide');
                     },
-                    typeChange:function () {
-                        var txt =$(this).find("option").not(function(){ return !this.selected }).text();
+                    typeChange: function () {
+                        var txt = $(this).find("option").not(function () {
+                            return !this.selected
+                        }).text();
                         $(this).parents('.note-type-header').find("div").html(txt);
                         var val = $(this).val();
+                        ctrl.chooseBigType = val;
                         ctrl.loadNoteType(val);
 
                     },
-                    eventBind:function () {
-                        $(".note-type-list li").on("click",function () {
-                            event.showDialog();
-                        });
+                    showAdd: function () {
+                        ctrl.chooseTypeid = $(this).attr('data-id');
+                        event.showDialog();
+                    },
+                    noteDel: function () {
+                        var id = $(this).attr("data-id");
+                        ctrl.delNote(id);
                     }
+
                 };
-                var temp={
-                    typesTemp:_.template($("#__type_list_temp").html())
+                var temp = {
+                    typesTemp: _.template($("#__type_list_temp").html()),
+                    noteList: _.template($("#__note_list_temp").html())
                 }
-                var ctrl={
-                    date:GetQueryStr('y'),
-                    loadNoteType:function (val) {
+                var ctrl = {
+                    date: GetQueryStr('y'),
+                    chooseBigType: 1,
+                    chooseTypeid: 0,
+                    loadNoteType: function (val) {
+                        els.typeLoad.show();
+                        $(".note-type-list").html("");
                         $.ajax({
-                            url:'/charge/chargetlist',
-                            data:{typeid:val,cupage:1},
-                            type:"post",
-                            success:function (data) {
-                                console.log(data)
+                            url: '/charge/chargetlist',
+                            data: {typeid: val, cupage: 1},
+                            type: "post",
+                            success: function (data) {
+//                                console.log(data)
                                 $(".note-type-list").html(temp.typesTemp(data));
+                                els.typeLoad.hide();
+                                event.init();
                             }
                         });
+                    },
+                    addNote: function () {
+                        var amt = els.formAmt.val();
+                        if (!amt > 0) {
+                            alert("请输入金额");
+                            return;
+                        }
+                        $.ajax({
+                            url: "/charge/addusercharge",
+                            type: "POST",
+                            data: {
+                                bigtype: ctrl.chooseBigType,
+                                chargetypeid: ctrl.chooseTypeid,
+                                usemoney: amt,
+                                recordtime: ctrl.date
+                            },
+                            success: function (data) {
+                                event.typesHide();
+                                event.cancel();
+                                if (data.status == 0) {
+                                    alert("操作成功");
+                                } else {
+                                    alert("操作失败 ");
+                                }
+                            }
+                        })
+                    },
+                    getNote: function () {
+                        $.ajax({
+                            url: "/charge/userchargelist",
+                            success: function (data) {
+
+                                els.noteList.html(temp.noteList(data));
+                                event.init();
+                            }
+                        })
+                    },
+                    delNote: function (id) {
+                        $.ajax({
+                            url: "/charge/delcharge",
+                            data: {id: id},
+                            type:"POST",
+                            success: function (data) {
+                                if (data.status == 0) {
+                                    ctrl.getNote();
+                                    alert("操作成功");
+                                } else {
+                                    alert("操作失败 ");
+                                }
+                            }
+                        })
                     }
                 }
+                ctrl.getNote();
                 event.init();
-                event.eventBind();
 
             });
             $(window).on('resize', pagezoom.calc);
