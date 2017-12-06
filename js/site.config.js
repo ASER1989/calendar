@@ -1,7 +1,7 @@
 /**
  * Created by Lenovo on 2017/12/5.
  */
-window._config=__config={
+window._config = __config = {
     host: "http://jz.023qx.net/api/",
     resHost: "http://jz.023qx.net/",
 
@@ -23,6 +23,7 @@ require.libCallback.push(
                 if (opt.success) {
                     opt.success = function (successfn) {
                         return function (res) {
+                            res = Object.prototype.toString.call(res) == "[object String]" ? JSON.parse(res) : res;
                             successfn.call(null, res);
                         }
                     }(opt.success);

@@ -147,3 +147,7 @@ footer {
 .hide {
   display: none;
 }
+.align-center {
+  text-align: center !important;
+  color: #e3e3e3 !important;
+}

@@ -73,13 +73,13 @@
         <a href="javascript:void(0);" data-click="typesHide">取消</a>
     </section>
     <ul class="note-type-list">
-        <li>
-            <div>
-                <img src="./images/icons/eat1.png" alt="">
-            </div>
-            <em>餐饮</em>
-        </li>
-
+        <!--<li>-->
+            <!--<div>-->
+                <!--<img src="./images/icons/eat1.png" alt="">-->
+            <!--</div>-->
+            <!--<em>餐饮</em>-->
+        <!--</li>-->
+        <div>正在加载...</div>
     </ul>
 </section>
 <script type="text/html" id="__type_list_temp">
@@ -156,21 +156,17 @@
                 var ctrl={
                     date:GetQueryStr('y'),
                     loadNoteType:function (val) {
-//                        $.ajax({
-//                            url:'/charge/chargetlist',
-//                            data:{typeid:val,cupage:1},
-//                            type:"post",
-//                            success:function (data) {
-//                                console.log(data)
-//
-//                            }
-//                        });
-                        var data ='{"status":0,"data":[{"id":"1","typename":"\u5403\u996d","typeicon":"\/upload\/images\/20171204\/151234958878834.jpg","datatype":"1"}],"msg":""}';
-                        data= JSON.parse(data);
-                        $(".note-type-list").html(temp.typesTemp(data));
+                        $.ajax({
+                            url:'/charge/chargetlist',
+                            data:{typeid:val,cupage:1},
+                            type:"post",
+                            success:function (data) {
+                                console.log(data)
+                                $(".note-type-list").html(temp.typesTemp(data));
+                            }
+                        });
                     }
                 }
-                console.log(ctrl.date);
                 event.init();
                 event.eventBind();
 

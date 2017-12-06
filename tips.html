@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="yes" name="apple-touch-fullscreen">
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>今日事项</title>
-    <link rel="stylesheet" href="css/tips.css">
+    <link rel="stylesheet" href="css/tips.css?v=1">
 
 </head>
 <body>
@@ -17,18 +18,8 @@
 </header>
 <section class="tip-content">
     <ul class="tip-list">
-        <li>上午9点30分营销中心元旦营销活动策划会议 <a href=""></a> </li>
-        <li>上午10点30分关于2018元旦营销活动各团队工作安排会议 <a href=""></a> </li>
-        <li>上午11点30分与2018多方会议系统乙方产品策划总监讨论多方会议系统设计方案 <a href=""></a> </li>
-        <li>下午1点营销战略中心2017工作总结会 <a href=""></a> </li>
-        <li>下午1点30分营销战略中心B2B事业部2017工作总结会 <a href=""></a> </li>
-        <li>下午2点销售事业部2017工作总结会 <a href=""></a> </li>
-        <li>下午3点产品事业部2017工作总结会 <a href=""></a> </li>
-        <li>下午4点大数据战略中心2017工作总结会 <a href=""></a> </li>
-        <li>下午5点采购中心2017工作总结会 <a href=""></a> </li>
-        <li>下午5点30分采购中心供应链事业部2017工作总结会 <a href=""></a> </li>
-        <li>下午6点人资活动中心关于2018年1月各部门团建活动安排 <a href=""></a> </li>
-        <li>下午7点2017长期合作伙伴晚宴 <a href=""></a> </li>
+        <li class="align-center">加载中...</li>
+
     </ul>
 </section>
 <footer data-click="showDialog">
@@ -43,42 +34,115 @@
         </div>
     </section>
 </section>
+<script type="text/html" id="_list_temp">
+    <%for(var i=0,item;item=data[i++];){%>
+    <li><%=item.ctn%><a href="javascript:void(0);" data-id="<%=item.id%>" data-click="itemDel"></a></li>
+    <%}%>
+    <%if(data==null || data.length==0){%>
+    <li class="align-center">暂无记录</li>
+    <%}%>
+</script>
 <script src="js/lib/me.require.js"></script>
 <script type="text/javascript">
     require(['./js/lib/zepto.js',
             './js/lib/zoom.js',
+            './js/site.config.js',
             './js/lib/underscore.js'],
         function () {
             var pagezoom = new zoom($);
             pagezoom.calc(function () {
-                var els={
-                    dialog:$(".dialog"),
-                    diaTxt:$(".dialog .input-dia-ctx")
+                var els = {
+                    dialog: $(".dialog"),
+                    diaTxt: $(".dialog .input-dia-ctx"),
+                    listUl: $('.tip-list')
                 }
-                var event={
-                    init:function () {
+                var temp = {
+                    list: _.template($("#_list_temp").html())
+                }
+                var event = {
+                    init: function () {
                         var clicks = $("[data-click]");
                         bind(clicks, "click");
                         function bind(els, type) {
                             for (var i = 0, el; el = els[i++];) {
                                 el = $(el);
-                                el.on(type, event[el.attr("data-" + type)]);
+                                el.off().on(type, event[el.attr("data-" + type)]);
                             }
                         }
                     },
-                    cancel:function () {
+                    cancel: function () {
                         els.dialog.addClass('hide');
                         els.diaTxt.val('');
                     },
-                    submit:function () {
-                        els.dialog.addClass('hide');
-                        els.diaTxt.val('');
+                    submit: function () {
+                        ctrl.save(function () {
+                            els.dialog.addClass('hide');
+                            els.diaTxt.val('');
+                        });
+
                     },
-                    showDialog:function () {
+                    showDialog: function () {
                         els.dialog.removeClass('hide');
+                    },
+                    itemDel:function () {
+                        var id=  $(this).attr("data-id");
+                        ctrl.delItem(id);
+                    }
+                }
+                var ctrl = {
+                    date: GetQueryStr('y'),
+                    save: function (fn) {
+                        var txt = els.diaTxt.val();
+                        if (txt == null || txt.length < 1) {
+                            alert("请输入提醒内容");
+                            return;
+                        }
+                        $.ajax({
+                            url: "/charge/adduserrecord",
+                            data: {
+                                recorddate: ctrl.date,
+                                ctn: els.diaTxt.val()
+                            },
+                            success: function (data) {
+                                if (data.status == 0) {
+                                    ctrl.getList();
+                                    alert("添加成功");
+                                }
+                                typeof fn == "function" && fn.call();
+                            }
+                        })
+                    },
+                    getList: function () {
+                        $.ajax({
+                            url: "/charge/userrecordlist",
+                            data: {
+                                seldate: ctrl.date
+                            },
+                            type: "POST",
+                            success: function (data) {
+                                els.listUl.html(temp.list(data));
+                                event.init();
+                            }
+                        });
+                    },
+                    delItem:function (id) {
+                        $.ajax({
+                            url: "/charge/deluserrecord",
+                            data: {
+                                id: id
+                            },
+                            type: "POST",
+                            success: function (data) {
+                                if (data.status == 0) {
+                                    ctrl.getList();
+                                    alert("操作成功");
+                                }
+                            }
+                        });
                     }
                 }
                 event.init();
+                ctrl.getList();
 
             });
             $(window).on('resize', pagezoom.calc);
