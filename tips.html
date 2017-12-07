@@ -84,13 +84,19 @@
                     showDialog: function () {
                         els.dialog.removeClass('hide');
                     },
-                    itemDel:function () {
-                        var id=  $(this).attr("data-id");
+                    itemDel: function () {
+                        var id = $(this).attr("data-id");
                         ctrl.delItem(id);
                     }
                 }
                 var ctrl = {
                     date: GetQueryStr('y'),
+                    week: GetQueryStr('week'),
+                    yue: GetQueryStr('yue'),
+                    ready: function () {
+                        $('header h2').html(ctrl.date.replace('-', '年').replace('-', '月') + '日');
+                        $('header div').html(ctrl.week + ' ' + ctrl.yue);
+                    },
                     save: function (fn) {
                         var txt = els.diaTxt.val();
                         if (txt == null || txt.length < 1) {
@@ -125,7 +131,7 @@
                             }
                         });
                     },
-                    delItem:function (id) {
+                    delItem: function (id) {
                         $.ajax({
                             url: "/charge/deluserrecord",
                             data: {
@@ -141,8 +147,10 @@
                         });
                     }
                 }
+                ctrl.ready();
                 event.init();
                 ctrl.getList();
+
 
             });
             $(window).on('resize', pagezoom.calc);

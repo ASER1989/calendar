@@ -175,8 +175,14 @@
                 }
                 var ctrl = {
                     date: GetQueryStr('y'),
+                    week:GetQueryStr('week'),
+                    yue:GetQueryStr('yue'),
                     chooseBigType: 1,
                     chooseTypeid: 0,
+                    ready: function () {
+                        $('header h2').html(ctrl.date.replace('-', '年').replace('-', '月') + '日');
+                        $('header div').html(ctrl.week + ' ' + ctrl.yue);
+                    },
                     loadNoteType: function (val) {
                         els.typeLoad.show();
                         $(".note-type-list").html("");
@@ -185,7 +191,6 @@
                             data: {typeid: val, cupage: 1},
                             type: "post",
                             success: function (data) {
-//                                console.log(data)
                                 $(".note-type-list").html(temp.typesTemp(data));
                                 els.typeLoad.hide();
                                 event.init();
@@ -244,6 +249,7 @@
                         })
                     }
                 }
+                ctrl.ready();
                 ctrl.getNote();
                 event.init();
 

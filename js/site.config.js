@@ -23,7 +23,10 @@ require.libCallback.push(
                 if (opt.success) {
                     opt.success = function (successfn) {
                         return function (res) {
-                            res = Object.prototype.toString.call(res) == "[object String]" ? JSON.parse(res) : res;
+                            try{
+                                res = Object.prototype.toString.call(res) == "[object String]" ? JSON.parse(res) : res;
+                            }catch (e){}
+
                             successfn.call(null, res);
                         }
                     }(opt.success);
