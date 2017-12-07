@@ -18,8 +18,7 @@
 </header>
 <section class="tip-content">
     <ul class="tip-list">
-        <li class="align-center">加载中...</li>
-
+        <div class="align-center">加载中...</div>
     </ul>
 </section>
 <footer data-click="showDialog">
@@ -39,7 +38,7 @@
     <li><%=item.ctn%><a href="javascript:void(0);" data-id="<%=item.id%>" data-click="itemDel"></a></li>
     <%}%>
     <%if(data==null || data.length==0){%>
-    <li class="align-center">暂无记录</li>
+    <div class="align-center">暂无记录</div>
     <%}%>
 </script>
 <script src="js/lib/me.require.js"></script>
