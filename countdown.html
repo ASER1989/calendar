@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>倒计时</title>
+    <link rel="stylesheet" href="css/countdown.css?v=1">
+
+</head>
+<body>
+<header>
+    <h2>倒计时</h2>
+</header>
+<section class="count-content">
+    <ul class="count-title">
+        <li>时</li>
+        <li>分</li>
+        <li>秒</li>
+    </ul>
+    <ul class="count-val">
+        <li>0</li>
+        <li>0</li>
+        <li>0</li>
+    </ul>
+    <div class="count-btns">
+        <span data-click="start">开始</span>
+        <span data-click="pause">暂停</span>
+        <span data-click="reset">重置</span>
+    </div>
+</section>
+
+<script src="js/lib/me.require.js"></script>
+<script type="text/javascript">
+    require(['./js/lib/zepto.js',
+            './js/lib/zoom.js',
+            './js/site.config.js',
+            './js/lib/underscore.js'],
+        function () {
+            var pagezoom = new zoom($);
+            pagezoom.calc(function () {
+                var el = {
+                    h: $('.count-val li').eq(0),
+                    m: $('.count-val li').eq(1),
+                    s: $('.count-val li').eq(2)
+                };
+                var ctrl = {
+                    countVal: 0,
+                    pauseVal: 0,
+                    stime: null,
+                    timer: null,
+                    count: function () {
+                        ctrl.countVal = (+new Date()) - ctrl.stime + ctrl.pauseVal;
+                        var val = ctrl.countVal / 1000;
+                        ctrl.refels(parseInt(val/60/60),parseInt(val/60%60),val%60);
+                    },
+                    refels:function (h,m,s) {
+                        el.h.html(h);
+                        el.m.html(m);
+                        el.s.html(s.toFixed(3));
+                    }
+                }
+                var event = {
+                    init: function () {
+                        var clicks = $("[data-click]");
+                        bind(clicks, "click");
+                        function bind(els, type) {
+                            for (var i = 0, el; el = els[i++];) {
+                                el = $(el);
+                                el.off().on(type, event[el.attr("data-" + type)]);
+                            }
+                        }
+                    },
+                    start: function () {
+                        if(ctrl.timer){
+                            return;
+                        }
+                        ctrl.stime = +new Date();
+                        ctrl.timer = setInterval(ctrl.count, 30);
+                    },
+                    pause: function () {
+                        ctrl.pauseVal = ctrl.countVal;
+                        window.clearInterval(ctrl.timer);
+                        ctrl.timer = null;
+                    },
+                    reset: function () {
+                        ctrl.pauseVal = 0;
+                        ctrl.countVal = 0;
+                        ctrl.refels(0,0,0);
+                        window.clearInterval(ctrl.timer);
+                        ctrl.timer = null;
+                    }
+                }
+                event.init();
+            });
+            $(window).on('resize', pagezoom.calc);
+        });
+</script>
+</body>
+</html>
