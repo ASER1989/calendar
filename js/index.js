@@ -1295,7 +1295,7 @@ $(function () {
         jump(srt[0], srt[1], srt[2]);
         $(".jie").hide();
     });
-    msgAutoScroll()
+    // msgAutoScroll()
 });
 $('.jia').on('click', function () {
     $("#yyyyJia").html(sev_y);

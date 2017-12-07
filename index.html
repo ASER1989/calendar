@@ -61,14 +61,8 @@
                     </div>
                 </div>
                 <div class="day-right clearfix">
-                    <div>
-                        <p>距离高考还有311天</p>
-                        <p>距离春节还有99天</p>
-                        <p>距离劳动节还有189天</p>
-                        <p>距离儿童节还有220天</p>
-                        <p>距离建军节还有250天</p>
-                        <p>距离国庆节还有341天</p>
-                        <p>距离元旦节还有403天</p>
+                    <div id="__idx_topmsg">
+                      
                     </div>
                 </div>
             </section>
@@ -153,12 +147,39 @@
 </section>
 <footer>
     <a href="javascript:void(0);" onclick="idxCtrl.to('tips.html')">添加提醒</a>
-    <a href="javascript:void(0);"  onclick="idxCtrl.to('note.html')">添加记账</a>
+    <a href="javascript:void(0);" onclick="idxCtrl.to('note.html')">添加记账</a>
 </footer>
+<script type="text/html" id="_idx_topmsg_temp">
+    <%for(var i=0,item;item=data[i++];){%>
+    <p><%=item.ctn%>还有<%=getLet(item.enddate)%>天</p>
+    <%}%>
+</script>
 <script type="text/javascript" src="js/swiper-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/touch.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script src="js/lib/me.require.js"></script>
+<script type="text/javascript">
+    require(['./js/site.config.js',
+            './js/lib/underscore.js'],
+        function () {
+            $.ajax({
+                url: '/charge/siterecordlist',
+                success: function (data) {
+                    data.getLet = function (end) {
+                        var date = new Date(end + " 23:59:59");
+                        var let = date - new Date();
+                        var res = parseInt(let * 1 / 1000 / 60 / 60 / 24);
+
+                        return res > 0 ? res : 0;
+                    }
+
+                    $("#__idx_topmsg").html(_.template($("#_idx_topmsg_temp").html())(data));
+                    msgAutoScroll();
+                }
+            })
+        })
+</script>
 
 </body>
 </html>
