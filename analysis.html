@@ -10,21 +10,20 @@
     <title>收支分析</title>
     <link rel="stylesheet" href="css/analysis.css">
     <link rel="stylesheet" href="css/mobiscroll-2.13.2.full.min.css">
+    <link rel="stylesheet" href="css/datepicker.css">
 </head>
 <body>
 <header>
-    <h2 id="_header_year">
-        2017年12月
-    </h2>
-    <div  style="opacity: 0">
-
-        <select name="" id="_header_week">
-            <option value="1">第一周</option>
-            <option value="2">第二周</option>
-            <option value="3">第三周</option>
-            <option value="4">第四周</option>
+    <div class="aly-header">
+        <div>收入</div>
+        <select data-change="typeChange">
+            <option value="1">收入</option>
+            <option value="2">支出</option>
         </select>
     </div>
+    <section id="_analysis_date" class="date-section">
+
+    </section>
 </header>
 <section id="analysis-box" class="analysis">
 
@@ -35,11 +34,12 @@
     require([
 //            './js/lib/zepto.js',
             './js/jquery.1.7.2.min.js',
+
             './js/lib/mobiscroll-2.13.2.full.min.js',
             './js/lib/zoom.js',
             './js/lib/echarts.min.js'],
         function () {
-            require('./js/lib/mobiscroll-2.13.2.full.min.js', function () {
+            require(['./js/lib/mobiscroll-2.13.2.full.min.js', './js/lib/datepicker.js'], function () {
                 var pagezoom = new zoom($);
                 pagezoom.calc(function () {
                     function ready() {
@@ -77,7 +77,16 @@
                             cancelText: '取消'
                         });
                     };
-                    ready();
+//                    ready();
+
+                    $("#_analysis_date").dateRangePicker({onOk:function (start,end) {
+//                        console.log(start,end);
+                        $("#_analysis_date").html(start+' 至 '+end);
+                    }});
+                    $(".drp-days").on("touchstart mousedown",function () {
+//                        console.log($(this).html())
+                    })
+
 
                     var myChart = echarts.init(document.getElementById('analysis-box'));
 
@@ -95,7 +104,7 @@
                         },
                         yAxis: {},
                         series: [{
-                            name: '开销',
+                            name: '餐饮',
                             type: 'bar',
                             data: [535, 2000, 363, 300, 1600, 600]
                         }]
