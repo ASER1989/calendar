@@ -95,7 +95,7 @@
             startDate = new Date();
             // startDate.setDate(endDate.getDate() - daysAgo);
             startDate.setDate(1);
-            
+
             this.startCalendar = new Calendar(this, this.$dateRangePicker.find('.drp-calendar:first-child'), startDate, true);
             this.endCalendar = new Calendar(this, this.$dateRangePicker.find('.drp-calendar:last-child'), endDate, false);
             return this.draw();

@@ -82,7 +82,7 @@
     <li>
         <em class="<%=item.usemoney>0?'in':''%>">[<%=item.usemoney>0?'收入':'支出'%>]</em>
         <div class="note-price ellipsis"><%=item.usemoney%></div>
-        <div class="note-remark"><%=item.chargetype%></div>
+        <div class="note-remark"><%=item.chargetype%> <span> <%=item.recordtime%></span></div>
         <a href="javascript:void(0);" data-id="<%=item.id%>" data-click="noteDel"></a>
     </li>
     <%}%>
@@ -132,7 +132,7 @@
                     },
                     cancel: function () {
                         els.dialog.addClass('hide');
-                        els.diaTxt.val('');
+                        els.formAmt.val();
                     },
                     submit: function () {
                         ctrl.addNote();
@@ -144,7 +144,7 @@
                     },
                     showTypes: function () {
                         els.typesEl.removeClass('hide');
-                        ctrl.loadNoteType(1);
+                        ctrl.loadNoteType(ctrl.chooseBigType);
                     },
                     typesHide: function () {
                         els.typesEl.addClass('hide');
@@ -216,6 +216,7 @@
                                 event.typesHide();
                                 event.cancel();
                                 if (data.status == 0) {
+                                    ctrl.getNote();
                                     alert("操作成功");
                                 } else {
                                     alert("操作失败 ");

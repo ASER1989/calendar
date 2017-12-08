@@ -97,6 +97,9 @@ header div {
   color: #707070;
   padding-left: 0.3125rem;
 }
+.note-list .note-remark >span {
+  float: right;
+}
 footer {
   position: fixed;
   bottom: 0;
@@ -221,7 +224,7 @@ footer >a:first-child {
   border-radius: 0.1875rem;
 }
 .note-types {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;

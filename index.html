@@ -71,8 +71,11 @@
     </div>
     <!-- end header -->
     <section class="content">
-        <section class="cnt-banner">
-            广告~~~
+        <section class="cnt-banner swiper-container">
+            <div class="swiper-wrapper" id="__banner_warp">
+
+            </div>
+            <div class="swiper-pagination"></div>
         </section>
         <section class="week">
             <ul class="clearfix f28">
@@ -156,6 +159,13 @@
     <p><%=item.ctn%>还有<%=getLet(item.enddate)%>天</p>
     <%}%>
 </script>
+<script type="text/html" id="_idx_banner_temp">
+    <%for(var j=0,jitem;jitem=data.pics[j++];){%>
+    <a href="<%=jitem.adlink%>" class="swiper-slide">
+        <img src="<%=_config.resHost%><%=jitem.adpic%>"/>
+    </a>
+    <%}%>
+</script>
 <script type="text/javascript" src="js/swiper-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/touch.min.js"></script>
@@ -178,6 +188,18 @@
 
                     $("#__idx_topmsg").html(_.template($("#_idx_topmsg_temp").html())(data));
                     msgAutoScroll();
+                }
+            });
+            $.ajax({
+                url:'/charge/adlist',
+                success:function (data) {
+
+                    $("#__banner_warp").html(_.template($("#_idx_banner_temp").html())(data));
+                    var mySwiper = new Swiper('.swiper-container', {
+                        autoplay: 1500,
+                        pagination: '.swiper-pagination',
+                        loop: true
+                    })
                 }
             })
         })
