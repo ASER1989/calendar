@@ -160,7 +160,7 @@
     <%}%>
 </script>
 <script type="text/html" id="_idx_banner_temp">
-    <%for(var j=0,jitem;jitem=data.pics[j++];){%>
+    <%for(var j=0,jitem;jitem=data[j++];){%>
     <a href="<%=jitem.adlink%>" class="swiper-slide">
         <img src="<%=_config.resHost%><%=jitem.adpic%>"/>
     </a>
@@ -195,7 +195,7 @@
                 success:function (data) {
 
                     $("#__banner_warp").html(_.template($("#_idx_banner_temp").html())(data));
-                    var mySwiper = new Swiper('.swiper-container', {
+                    var mySwiper = new Swiper('.cnt-banner', {
                         autoplay: 1500,
                         pagination: '.swiper-pagination',
                         loop: true
