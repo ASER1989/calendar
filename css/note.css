@@ -4,6 +4,10 @@
   word-break: break-all;
   word-wrap: break-word;
   white-space: nowrap;
+  white-space: nowrap;
+}
+body {
+  font-family: Arial, "Microsoft Yahei", '微软雅黑';
 }
 * {
   margin: 0;
@@ -115,12 +119,14 @@ footer {
   display: box;
   display: -moz-box;
   display: -webkit-box;
+  font-weight: 500;
 }
 footer >a {
   display: block;
   width: 50%;
   text-decoration: none;
   color: #333;
+  font-size: 0.875rem;
 }
 footer >a:first-child {
   border-right: solid 1px #d0d0d0;

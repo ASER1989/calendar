@@ -116,6 +116,7 @@
 /*start day*/
 .content {
     padding-top: 1.2rem;
+    padding-bottom: 1rem;
 }
 
 .day {
@@ -1059,7 +1060,4 @@ footer a:first-child {
 }
 cnt-banner img{
     max-width: 100%;
-}
-body{
-    padding-bottom:.5rem;
 }

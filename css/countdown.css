@@ -4,6 +4,10 @@
   word-break: break-all;
   word-wrap: break-word;
   white-space: nowrap;
+  white-space: nowrap;
+}
+body {
+  font-family: Arial, "Microsoft Yahei", '微软雅黑';
 }
 * {
   margin: 0;
