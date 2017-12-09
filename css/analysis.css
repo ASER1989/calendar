@@ -82,9 +82,9 @@ header .aly-header >div:after {
   border-right: 0.4375rem solid transparent;
   position: absolute;
   top: 50%;
-  margin-top: -0.4375rem;
+  margin-top: -0.25rem;
   left: 50%;
-  margin-left: 1.4375rem;
+  margin-left: 1.3125rem;
 }
 .tip-content {
   margin-top: 4.375rem;
