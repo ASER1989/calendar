@@ -183,4 +183,14 @@ header .aly-header >div:after {
   width: 20rem;
   height: 16rem;
   padding: 0 10px;
+  position: relative;
+}
+.analysis:after {
+  content: attr(data-nodata);
+  position: absolute;
+  left: 5rem;
+  top: 5rem;
+  color: #d0d0d0;
+  width: 10rem;
+  text-align: center;
 }

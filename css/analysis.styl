@@ -152,3 +152,12 @@ header
   width 20rem
   height em(256)
   padding 0 10px
+  position relative
+  &:after
+    content:attr(data-nodata)
+    position absolute
+    left 5rem
+    top 5rem
+    color #d0d0d0
+    width 10rem
+    text-align center

@@ -24,7 +24,7 @@
 
     </section>
 </header>
-<section id="analysis-box" class="analysis">
+<section id="analysis-box" class="analysis"  data-nodata="加载中">
 
 </section>
 <script src="js/lib/me.require.js"></script>
@@ -67,6 +67,7 @@
                         typeid: 1,
                         startDate: null,
                         endDate: null,
+                        chartBox:$('#analysis-box'),
                         myChart: echarts.init(document.getElementById('analysis-box')),
                         ready: function () {
                             event.init();
@@ -95,6 +96,8 @@
                             ctrl.myChart.setOption(option);
                         },
                         loadData: function () {
+                            ctrl.myChart.clear();
+                            ctrl.chartBox.attr('data-nodata','数据加载中')
                             ctrl.startDate && $.ajax({
                                 url: '/charge/reportdata',
                                 type: 'post',
@@ -104,7 +107,9 @@
                                     typeid: ctrl.typeid
                                 },
                                 success: function (data) {
-                                    ctrl.myChart.clear();
+                                    data.data.length>0 && ctrl.chartBox.attr('data-nodata','');
+                                    (data.data==null ||  data.data.length==0) && ctrl.chartBox.attr('data-nodata','暂无记录');
+
                                     data.status == 0 && ctrl.chartDraw(data.data);
                                 }
                             })
