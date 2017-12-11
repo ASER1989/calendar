@@ -69,14 +69,18 @@
         </section>
         <!-- end day -->
     </div>
-    <!-- end header -->
-    <section class="content">
+    <!--<section class="cnt-banner-container">-->
         <section class="cnt-banner swiper-container">
             <div class="swiper-wrapper" id="__banner_warp">
 
             </div>
             <div class="swiper-pagination"></div>
         </section>
+    <!--</section>-->
+
+    <!-- end header -->
+    <section class="content">
+
         <section class="week">
             <ul class="clearfix f28">
                 <li><a href="#">日</a></li>
@@ -191,14 +195,15 @@
                 }
             });
             $.ajax({
-                url:'/charge/adlist',
-                success:function (data) {
+                url: '/charge/adlist',
+                success: function (data) {
 
                     $("#__banner_warp").html(_.template($("#_idx_banner_temp").html())(data));
-                    var mySwiper = new Swiper('.cnt-banner', {
+                    var _bannerSwiper = new Swiper('.cnt-banner', {
                         autoplay: 1500,
                         pagination: '.swiper-pagination',
-                        loop: true
+                        loop: true,
+                        onSlideChangeEnd:null
                     })
                 }
             })

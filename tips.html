@@ -9,6 +9,7 @@
           content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>今日事项</title>
     <link rel="stylesheet" href="css/tips.css?v=1">
+    <link rel="stylesheet" href="css/datepulg.css">
 
 </head>
 <body>
@@ -35,7 +36,8 @@
 </section>
 <script type="text/html" id="_list_temp">
     <%for(var i=0,item;item=data[i++];){%>
-    <li><%=item.ctn%><a href="javascript:void(0);" data-id="<%=item.id%>" data-click="itemDel"></a></li>
+    <li><%=item.ctn%> <%=item.recorddate%><a href="javascript:void(0);" data-id="<%=item.id%>" data-click="itemDel"></a>
+    </li>
     <%}%>
     <%if(data==null || data.length==0){%>
     <div class="align-center">暂无记录</div>
@@ -43,116 +45,144 @@
 </script>
 <script src="js/lib/me.require.js"></script>
 <script type="text/javascript">
-    require(['./js/lib/zepto.js',
+    require([
+            './js/jquery.1.7.2.min.js',
             './js/lib/zoom.js',
             './js/site.config.js',
             './js/lib/underscore.js'],
         function () {
-            var pagezoom = new zoom($);
-            pagezoom.calc(function () {
-                var els = {
-                    dialog: $(".dialog"),
-                    diaTxt: $(".dialog .input-dia-ctx"),
-                    listUl: $('.tip-list')
-                }
-                var temp = {
-                    list: _.template($("#_list_temp").html())
-                }
-                var event = {
-                    init: function () {
-                        var clicks = $("[data-click]");
-                        bind(clicks, "click");
-                        function bind(els, type) {
-                            for (var i = 0, el; el = els[i++];) {
-                                el = $(el);
-                                el.off().on(type, event[el.attr("data-" + type)]);
-                            }
+            require(['./js/lib/dateplug.js'], function () {
+                var pagezoom = new zoom($);
+                pagezoom.calc(function () {
+
+                    var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+                    $("h2").dateRangePicker({
+                        onOk: function (y, m, d, fn) {
+                            ctrl.date = y + '-' + m + '-' + d;
+                            ctrl.yue = fn(y, m, d);
+                            var wd = new Date(ctrl.date).getDay();
+
+                            ctrl.week =weeks[wd] ;
+                            ctrl.ready();
+                            ctrl.getList();
                         }
-                    },
-                    cancel: function () {
-                        els.dialog.addClass('hide');
-                        els.diaTxt.val('');
-                    },
-                    submit: function () {
-                        ctrl.save(function () {
+                    });
+
+                    var els = {
+                        dialog: $(".dialog"),
+                        diaTxt: $(".dialog .input-dia-ctx"),
+                        listUl: $('.tip-list'),
+                        showLoading:function () {
+                            els.listUl.html(' <div class="align-center">加载中...</div>');
+                        }
+                    }
+                    var temp = {
+                        list: _.template($("#_list_temp").html())
+                    }
+                    var event = {
+                        init: function () {
+                            var clicks = $("[data-click]");
+                            bind(clicks, "click");
+                            function bind(els, type) {
+                                for (var i = 0, el; el = els[i++];) {
+                                    el = $(el);
+                                    el.off().on(type, event[el.attr("data-" + type)]);
+                                }
+                            }
+                        },
+                        cancel: function () {
                             els.dialog.addClass('hide');
                             els.diaTxt.val('');
-                        });
+                        },
+                        submit: function () {
+                            ctrl.save(function () {
+                                els.showLoading();
+                                els.dialog.addClass('hide');
+                            }, function () {
+                                els.diaTxt.val('');
+                            });
 
-                    },
-                    showDialog: function () {
-                        els.dialog.removeClass('hide');
-                    },
-                    itemDel: function () {
-                        var id = $(this).attr("data-id");
-                        ctrl.delItem(id);
-                    }
-                }
-                var ctrl = {
-                    date: GetQueryStr('y'),
-                    week: GetQueryStr('week'),
-                    yue: GetQueryStr('yue'),
-                    ready: function () {
-                        $('header h2').html(ctrl.date.replace('-', '年').replace('-', '月') + '日');
-                        $('header div').html(ctrl.week + ' ' + ctrl.yue);
-                    },
-                    save: function (fn) {
-                        var txt = els.diaTxt.val();
-                        if (txt == null || txt.length < 1) {
-                            alert("请输入提醒内容");
-                            return;
+                        },
+                        showDialog: function () {
+                            els.dialog.removeClass('hide');
+                        },
+                        itemDel: function () {
+                            var id = $(this).attr("data-id");
+                            ctrl.delItem(id);
                         }
-                        $.ajax({
-                            url: "/charge/adduserrecord",
-                            data: {
-                                recorddate: ctrl.date,
-                                ctn: els.diaTxt.val()
-                            },
-                            success: function (data) {
-                                if (data.status == 0) {
-                                    ctrl.getList();
-                                    alert("添加成功");
-                                }
-                                typeof fn == "function" && fn.call();
-                            }
-                        })
-                    },
-                    getList: function () {
-                        $.ajax({
-                            url: "/charge/userrecordlist",
-                            data: {
-                                seldate: ctrl.date
-                            },
-                            type: "POST",
-                            success: function (data) {
-                                els.listUl.html(temp.list(data));
-                                event.init();
-                            }
-                        });
-                    },
-                    delItem: function (id) {
-                        $.ajax({
-                            url: "/charge/deluserrecord",
-                            data: {
-                                id: id
-                            },
-                            type: "POST",
-                            success: function (data) {
-                                if (data.status == 0) {
-                                    ctrl.getList();
-                                    alert("操作成功");
-                                }
-                            }
-                        });
                     }
-                }
-                ctrl.ready();
-                event.init();
-                ctrl.getList();
+                    var ctrl = {
+                        date: GetQueryStr('y'),
+                        week: GetQueryStr('week'),
+                        yue: GetQueryStr('yue'),
+                        ready: function () {
+                            $('header h2').html(ctrl.date.replace('-', '年').replace('-', '月') + '日');
+                            $('header div').html(ctrl.week + ' ' + ctrl.yue);
+                        },
+                        save: function (fn, callback) {
+                            var txt = els.diaTxt.val();
+                            if (txt == null || txt.length < 1) {
+                                alert("请输入提醒内容");
+                                return;
+                            }
+                            typeof fn == "function" && fn.call();
+
+                            $.ajax({
+                                url: "/charge/adduserrecord",
+                                data: {
+                                    recorddate: ctrl.date,
+                                    ctn: els.diaTxt.val()
+                                },
+                                success: function (data) {
+
+                                    if (data.status == 0) {
+                                        ctrl.getList();
+//                                    alert("添加成功");
+                                    }
+                                    typeof callback == "function" && callback.call();
+
+                                }
+                            })
+                        },
+                        getList: function () {
+                            els.showLoading();
+                            $.ajax({
+                                url: "/charge/userrecordlist",
+                                data: {
+                                    seldate: ctrl.date
+                                },
+                                type: "POST",
+                                success: function (data) {
+                                    els.listUl.html(temp.list(data));
+                                    event.init();
+                                }
+                            });
+                        },
+                        delItem: function (id) {
+                            els.showLoading();
+                            $.ajax({
+                                url: "/charge/deluserrecord",
+                                data: {
+                                    id: id
+                                },
+                                type: "POST",
+                                success: function (data) {
+                                    if (data.status == 0) {
+                                        ctrl.getList();
+                                        alert("操作成功");
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    ctrl.ready();
+                    event.init();
+                    ctrl.getList();
 
 
+                });
+                $(window).on('resize', pagezoom.calc);
             });
-            $(window).on('resize', pagezoom.calc);
         });
 </script>
 </body>

@@ -115,7 +115,7 @@
 
 /*start day*/
 .content {
-    padding-top: 1.2rem;
+    padding-top: 2.7rem;
     padding-bottom: 1rem;
 }
 
@@ -215,6 +215,7 @@
 
 .day-left p em {
     font-size: .15rem;
+    margin-left: auto;
 }
 
 .day-left p i {
@@ -1052,11 +1053,17 @@ footer a:first-child {
     -moz-box-shadow: 0 0 10px #5bb8ff;
     box-shadow: 0 0 10px #5bb8ff;
 }
+.cnt-banner-container{
+
+}
 .cnt-banner{
     width:100%;
     height:1.5rem;
     background-color: #f0f0f0;
     text-align: center;
+    position: fixed !important;
+    top: 1.2rem;
+    z-index: 999 !important;
 }
 cnt-banner img{
     max-width: 100%;
