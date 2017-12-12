@@ -184,15 +184,16 @@
             data: {month: d},
             success: function (data) {
                 if(data.status=="0"){
-                    var dslist = $('#d3 .list');
+                    var dslist = $('#d3 .list'),now=new Date();
 
                     var days = data.data.map(function (item) {
                         return item.day;
                     });
                     for(var i=0,li;li=dslist[i++];){
                         li = $(li);
-                        var txt = li.find("i").html(); 
+                        var txt = li.find("i").html();
                         days.indexOf(txt)>=0 && (!li.hasClass('not_this') && li.addClass('hastip'));
+                        txt==now.getDate() &&(li.hasClass('hastip') && li.addClass('tipover'));
                     }
                 }
             }

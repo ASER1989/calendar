@@ -148,7 +148,7 @@
     -webkit-flex-grow: 0;
     -webkit-flex-shrink: 0;
     -webkit-flex-basis: 36%;
-    min-width:1.7rem;
+    min-width: 1.7rem;
 }
 
 .day-right {
@@ -1021,30 +1021,34 @@ footer a {
 footer a:first-child {
     border-right: solid 1px #f0f0f0
 }
-.top-nongli{
+
+.top-nongli {
     position: relative;
 }
-.top-nongli:before{
+
+.top-nongli:before {
     content: '阴历:';
 }
-.idx-links{
+
+.idx-links {
     margin-top: 10px;
-    padding:0 10px;
+    padding: 0 10px;
 }
-.idx-link{
+
+.idx-link {
     display: block;
-    border:solid 1px #57abff;
-    color:#57abff;
+    border: solid 1px #57abff;
+    color: #57abff;
     text-align: center;
     /*border-top-left-radius: 3rem;*/
     /*border-top-right-radius: 3rem;*/
     border-radius: 100%;
     position: fixed;
     bottom: .2rem;
-    left:50%;
-    width:.7rem;
-    height:.7rem;
-    line-height:.7rem;
+    left: 50%;
+    width: .7rem;
+    height: .7rem;
+    line-height: .7rem;
     text-align: center;
     margin-left: -0.36rem;
     z-index: 1000;
@@ -1053,29 +1057,89 @@ footer a:first-child {
     -moz-box-shadow: 0 0 10px #5bb8ff;
     box-shadow: 0 0 10px #5bb8ff;
 }
-.cnt-banner-container{
+
+.cnt-banner-container {
 
 }
-.cnt-banner{
-    width:100%;
-    height:1.5rem;
+
+.cnt-banner {
+    width: 100%;
+    height: 1.5rem;
     background-color: #f0f0f0;
     text-align: center;
     position: fixed !important;
     top: 1.2rem;
     z-index: 999 !important;
 }
-.cnt-banner img{
+
+.cnt-banner img {
     max-width: 100%;
 }
-.hastip{
-    border:solid 1px red;
+
+.hastip {
+    border: solid 1px red;
 }
-.hastip:after{
-    content:" ";
+
+.hastip:after {
+    content: " ";
     position: absolute;
-    right:3px;
-    top:3px;
-    border:solid 4px red;
+    right: 3px;
+    top: 3px;
+    border: solid 4px red;
     border-radius: 10px;
+}
+
+.tipover:after {
+    animation: 2s tipover infinite;
+    -webkit-animation: 2s tipover infinite;
+    -moz-animation: 2s tipover infinite;
+    -o-animation: 2s tipover infinite;
+}
+
+@keyframes tipover {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes tipover {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes tipover {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes tipover {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
