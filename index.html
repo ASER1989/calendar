@@ -93,7 +93,7 @@
             </ul>
         </section>
         <section class="calenda">
-            <div class="swiper-container">
+            <div id="_calenda_container" class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <table id="now1" class="tables">
@@ -191,9 +191,8 @@
                     });
                     for(var i=0,li;li=dslist[i++];){
                         li = $(li);
-                        var txt = li.find("i").html();
-                        console.log(txt);
-                        days.indexOf(txt)>=0 && li.addClass('hastip');
+                        var txt = li.find("i").html(); 
+                        days.indexOf(txt)>=0 && (!li.hasClass('not_this') && li.addClass('hastip'));
                     }
                 }
             }

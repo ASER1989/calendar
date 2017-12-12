@@ -4,7 +4,7 @@
 
     //全局的年月日，适用于任何时候获取今天的年月日。（很重要）
 var sev_m, sev_y, sev_d, active = 3, sev_week, sev_topyue;
-var mySwiper = new Swiper('.swiper-container', {
+var mySwiper = new Swiper('#_calenda_container', {
     initialSlide: 1,
     loop: true,
     speed: 400,
@@ -222,12 +222,13 @@ var mySwiper = new Swiper('.swiper-container', {
         $("#appDateText").html($("#appDate").val());
         var trLength = $("#d" + nows).find("tr").length;
         if (trLength == 6) {
-            $(".swiper-container").css("paddingBottom", ".45rem");
+            $("#_calenda_container").css("paddingBottom", ".45rem");
         } else {
-            $(".swiper-container").css("paddingBottom", "");
+            $("#_calenda_container").css("paddingBottom", "");
 
         }
         swiper.unlockSwipes();
+        tipReady(sev_y+'-'+sev_m);
     }
 
 });
