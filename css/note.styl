@@ -1,8 +1,9 @@
 @import 'fn'
 *
-  margin  0
+  margin 0
   padding 0
   box-sizing border-box
+
 header
   height em(70)
   background-color: #fafafa;
@@ -23,15 +24,17 @@ header
     text-align center
     font-size em(13)
     h em(26)
+
 .note-content
   margin-top em(70)
   padding-bottom em(40)
+
 .note-list
   display block
   list-style none
   padding em(10) em(15)
-  >li
-    line-height  em(20);
+  > li
+    line-height em(20);
     text-align left
     border-bottom solid 1px #f0f0f0
     padding em(10) em(32)
@@ -39,10 +42,10 @@ header
     color #333333
     position relative
     display box
-    box-align:center
+    box-align: center
     &:last-child
-      border:none;
-    >em
+      border: none;
+    > em
       color: #f00;
       font-style: normal;
       position: absolute;
@@ -53,7 +56,7 @@ header
       width: em(40);
       &.in
         color darkgreen
-    >a
+    > a
       display block;
       position absolute
       right 0
@@ -69,8 +72,9 @@ header
     width em(146)
     color #707070
     padding-left em(5)
-    >span
+    > span
       float right
+
 footer
   position fixed
   bottom 0
@@ -84,7 +88,7 @@ footer
   z-index 96
   display box
   font-weight 500
-  >a
+  > a
     display block
     width 50%
     text-decoration none
@@ -119,7 +123,7 @@ footer
     width em(280)
     margin 0
     display box
-    >a
+    > a
       display block
       width em(140)
       h em(40)
@@ -144,10 +148,10 @@ footer
   background-color #fafafa
   margin 0
   font-size em(14)
-  >div
+  > div
     margin em(3) 0
     padding-bottom em(5)
-  select,input
+  select, input
     width: em(180);
     height em(26)
     border: solid 1px #f0f0f0;
@@ -158,6 +162,7 @@ footer
     border-radius: em(3);
   label
     vertical-align top
+
 .input-dia-remark
   border: solid 1px #f0f0f0;
   resize: none;
@@ -172,6 +177,7 @@ footer
   margin 0
   font-size em(13)
   border-radius em(3)
+
 .note-types
   position fixed
   top 0
@@ -182,6 +188,7 @@ footer
   z-index 100
   overflow-x: hidden
   overflow-y: auto
+
 .note-type-header
   position fixed
   left 0
@@ -207,14 +214,14 @@ footer
     position relative
     &:after
       position absolute
-      top:0
+      top: 0
       left 0
-      bottom:0
-      right:0
+      bottom: 0
+      right: 0
       content attr(data-val)
       text-align center
       color #ffffff
-  >div
+  > div
     position: absolute;
     top: 0;
     bottom: 0;
@@ -230,13 +237,14 @@ footer
       border-right: em(7) solid transparent;
       position: absolute;
       top: 50%;
-      margin-top:  em(-5);
+      margin-top: em(-5);
       left: 50%;
       margin-left: em(25);
-  >a
+  > a
     color #ffffff
     font-size em(13)
     text-decoration none
+
 .note-type-list
   display block
   list-style none;
@@ -244,13 +252,13 @@ footer
   width em(320)
   padding em(10) em(20)
   font-size 0
-  >li
+  > li
     width em(70)
     height @width
     display inline-block
     box-sizing border-box
     margin-top em(13)
-    >div
+    > div
       margin auto
       width em(46)
       h @width
@@ -258,10 +266,10 @@ footer
       border-radius em(46)
       text-align center
       overflow hidden;
-      >img
+      > img
         max-width em(46)
         vertical-align middle
-    >em
+    > em
       font-style normal
       font-size em(12)
       width 100%
@@ -269,12 +277,63 @@ footer
       display block
       margin-top em(3)
       color #707070
+
 .hide
   display none !important
+
 .loading
   text-align center !important
   color: #e3e3e3 !important
+
 .align-center
   text-align center !important;
   color: #e3e3e3 !important;
   display block !important;
+
+.agreement-bg
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom: 0
+  background-color #00000050
+  z-index 996
+  .agreement
+    position absolute
+    left 2rem
+    right 2rem
+    top 1rem
+    bottom 2rem
+    background-color #ffffff
+  .agreement-ctx
+    position: absolute
+    top em(10)
+    left 0
+    right 0
+    bottom em(50)
+    padding em(0) em(10)
+    font-size em(13)
+    color #606060
+    overflow-x hidden
+    overflow-y auto
+    -webkit-overflow-scrolling:touch
+  .agr-btns
+    position absolute
+    left: 0
+    bottom 0
+    right: 0
+    height em(50)
+    border-top solid 1px #e0e0e0
+    display box
+    >a
+      display block
+      h em(50)
+      text-align center
+      width 100%
+      color #000000
+      text-decoration none
+      background-color #f9f9f9
+      //&:first-child
+      //  border-right:solid 1px #d0d0d0
+      //&:active
+      //  color #d0d0d0

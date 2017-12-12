@@ -34,6 +34,168 @@
         </div>
     </section>
 </section>
+
+<section class="agreement-bg hide">
+    <section class="agreement">
+        <div class="agreement-ctx">
+
+
+            color: #e3e3e3 !important;
+            display block !important;
+
+            .agreement-bg
+            position fixed
+            top 0
+            left 0
+            right 0
+            bottom: 0
+            background-color #00000050
+            z-index 996
+            .agreement
+            position absolute
+            left 2rem
+            right 2rem
+            top 1rem
+            bottom 2rem
+            background-color #ffffff
+            padding-bottom em(5) em(5) em(50)
+            font-size em(13)
+            color #606060
+            overflow-x hidden
+            overflow-y auto
+            -webkit-overflow-scrolling:touch
+            .agr-btns
+            position absolute
+            left: 0
+            bottom 0
+            right: 0
+            height em(50)
+            border-top solid 1px #e0e0e0
+            display box
+            >a
+            display block
+            h em(50)
+            text-align center
+            width 50%
+            color #000000
+            text-decoration none
+            background-color #f9f9f9
+            &:first-child
+            border-right:solid 1px #d0d0d0
+            &:active
+            color #d0d0d0verflow-y auto
+            -webkit-overflow-scrolling:touch
+            .agr-btns
+            position absolute
+            left: 0
+            bottom 0
+            right: 0
+            height em(50)
+            border-top solid 1px #e0e0e0
+            display box
+            >a
+            display block
+            h em(50)
+            text-align center
+            width 50%
+            color #000000
+            text-decoration none
+            background-color #f9f9f9
+            &:first-child
+            border-right:solid 1px #d0d0d0
+            &:active
+            color #d0d0d0verflow-y auto
+            -webkit-overflow-scrolling:touch
+            .agr-btns
+            position absolute
+            left: 0
+            bottom 0
+            right: 0
+            height em(50)
+            border-top solid 1px #e0e0e0
+            display box
+            >a
+            display block
+            h em(50)
+            text-align center
+            width 50%
+            color #000000
+            text-decoration none
+            background-color #f9f9f9
+            &:first-child
+            border-right:solid 1px #d0d0d0
+            &:active
+            color #d0d0d0verflow-y auto
+            -webkit-overflow-scrolling:touch
+            .agr-btns
+            position absolute
+            left: 0
+            bottom 0
+            right: 0
+            height em(50)
+            border-top solid 1px #e0e0e0
+            display box
+            >a
+            display block
+            h em(50)
+            text-align center
+            width 50%
+            color #000000
+            text-decoration none
+            background-color #f9f9f9
+            &:first-child
+            border-right:solid 1px #d0d0d0
+            &:active
+            color #d0d0d0verflow-y auto
+            -webkit-overflow-scrolling:touch
+            .agr-btns
+            position absolute
+            left: 0
+            bottom 0
+            right: 0
+            height em(50)
+            border-top solid 1px #e0e0e0
+            display box
+            >a
+            display block
+            h em(50)
+            text-align center
+            width 50%
+            color #000000
+            text-decoration none
+            background-color #f9f9f9
+            &:first-child
+            border-right:solid 1px #d0d0d0
+            &:active
+            color #d0d0d0verflow-y auto
+            -webkit-overflow-scrolling:touch
+            .agr-btns
+            position absolute
+            left: 0
+            bottom 0
+            right: 0
+            height em(50)
+            border-top solid 1px #e0e0e0
+            display box
+            >a
+            display block
+            h em(50)
+            text-align center
+            width 50%
+            color #000000
+            text-decoration none
+            background-color #f9f9f9
+            &:first-child
+            border-right:solid 1px #d0d0d0
+            &:active
+            color #d0d0d0
+        </div>
+        <div class="agr-btns">
+            <!--<a href="">拒绝</a>-->
+            <a href="javascript:void(0)" data-click="agreeApply">已阅读并同意</a>
+        </div>
+    </section>
+</section>
 <script type="text/html" id="_list_temp">
     <%for(var i=0,item;item=data[i++];){%>
     <li><%=item.ctn%> <%=item.recorddate%><a href="javascript:void(0);" data-id="<%=item.id%>" data-click="itemDel"></a>
@@ -56,22 +218,26 @@
                 pagezoom.calc(function () {
 
                     var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-                    $("h2").dateRangePicker({
-                        onOk: function (y, m, d, fn) {
-                            ctrl.date = y + '-' + m + '-' + d;
-                            ctrl.yue = fn(y, m, d);
-                            var wd = new Date(ctrl.date).getDay();
+                    function dateplugReady() {
+                        $("h2").dateRangePicker({
+                            onOk: function (y, m, d, fn) {
+                                ctrl.date = y + '-' + m + '-' + d;
+                                ctrl.yue = fn(y, m, d);
+                                var wd = new Date(ctrl.date).getDay();
 
-                            ctrl.week =weeks[wd] ;
-                            ctrl.ready();
-                            ctrl.getList();
-                        }
-                    });
+                                ctrl.week =weeks[wd] ;
+                                ctrl.ready();
+                                ctrl.getList();
+                            }
+                        });
+                    }
+
 
                     var els = {
                         dialog: $(".dialog"),
                         diaTxt: $(".dialog .input-dia-ctx"),
                         listUl: $('.tip-list'),
+                        agreement: $(".agreement-bg"),
                         showLoading:function () {
                             els.listUl.html(' <div class="align-center">加载中...</div>');
                         }
@@ -109,6 +275,11 @@
                         itemDel: function () {
                             var id = $(this).attr("data-id");
                             ctrl.delItem(id);
+                        },
+                        agreeApply:function () {
+                            store.set("is-tips-apply","apply");
+                            els.agreement.addClass('hide');
+                            dateplugReady();
                         }
                     }
                     var ctrl = {
@@ -174,6 +345,11 @@
                                 }
                             });
                         }
+                    }
+                    if(store.get("is-tips-apply")!="apply") {
+                        els.agreement.removeClass("hide");
+                    }else{
+                        dateplugReady();
                     }
                     ctrl.ready();
                     event.init();

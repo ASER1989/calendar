@@ -156,3 +156,54 @@ footer {
   text-align: center !important;
   color: #e3e3e3 !important;
 }
+.agreement-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.314);
+  z-index: 996;
+}
+.agreement-bg .agreement {
+  position: absolute;
+  left: 2rem;
+  right: 2rem;
+  top: 1rem;
+  bottom: 2rem;
+  background-color: #fff;
+}
+.agreement-bg .agreement-ctx {
+  position: absolute;
+  top: 0.625rem;
+  left: 0;
+  right: 0;
+  bottom: 3.125rem;
+  padding: 0rem 0.625rem;
+  font-size: 0.8125rem;
+  color: #606060;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.agreement-bg .agr-btns {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 3.125rem;
+  border-top: solid 1px #e0e0e0;
+  display: box;
+  display: -moz-box;
+  display: -webkit-box;
+}
+.agreement-bg .agr-btns >a {
+  display: block;
+  height: 3.125rem;
+  line-height: 3.125rem;
+  text-align: center;
+  width: 100%;
+  color: #000;
+  text-decoration: none;
+  background-color: #f9f9f9;
+}

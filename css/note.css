@@ -51,7 +51,7 @@ header div {
   list-style: none;
   padding: 0.625rem 0.9375rem;
 }
-.note-list >li {
+.note-list > li {
   line-height: 1.25rem;
   text-align: left;
   border-bottom: solid 1px #f0f0f0;
@@ -66,10 +66,10 @@ header div {
   -moz-box-align: center;
   box-align: center;
 }
-.note-list >li:last-child {
+.note-list > li:last-child {
   border: none;
 }
-.note-list >li >em {
+.note-list > li > em {
   color: #f00;
   font-style: normal;
   position: absolute;
@@ -79,10 +79,10 @@ header div {
   height: 1.25rem;
   width: 2.5rem;
 }
-.note-list >li >em.in {
+.note-list > li > em.in {
   color: #006400;
 }
-.note-list >li >a {
+.note-list > li > a {
   display: block;
   position: absolute;
   right: 0;
@@ -101,7 +101,7 @@ header div {
   color: #707070;
   padding-left: 0.3125rem;
 }
-.note-list .note-remark >span {
+.note-list .note-remark > span {
   float: right;
 }
 footer {
@@ -121,14 +121,14 @@ footer {
   display: -webkit-box;
   font-weight: 500;
 }
-footer >a {
+footer > a {
   display: block;
   width: 50%;
   text-decoration: none;
   color: #333;
   font-size: 0.875rem;
 }
-footer >a:first-child {
+footer > a:first-child {
   border-right: solid 1px #d0d0d0;
 }
 .dialog {
@@ -164,7 +164,7 @@ footer >a:first-child {
   display: -moz-box;
   display: -webkit-box;
 }
-.dialog .dia-opt >a {
+.dialog .dia-opt > a {
   display: block;
   width: 8.75rem;
   height: 2.5rem;
@@ -174,7 +174,7 @@ footer >a:first-child {
   color: #3c7500;
   text-decoration: none;
 }
-.dialog .dia-opt >a:first-child {
+.dialog .dia-opt > a:first-child {
   border-right: solid 1px #d0d0d0;
   color: #707070;
 }
@@ -192,7 +192,7 @@ footer >a:first-child {
   margin: 0;
   font-size: 0.875rem;
 }
-.input-dia-form >div {
+.input-dia-form > div {
   margin: 0.1875rem 0;
   padding-bottom: 0.3125rem;
 }
@@ -277,7 +277,7 @@ footer >a:first-child {
   text-align: center;
   color: #fff;
 }
-.note-type-header >div {
+.note-type-header > div {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -287,7 +287,7 @@ footer >a:first-child {
   text-align: center;
   z-index: -1;
 }
-.note-type-header >div:after {
+.note-type-header > div:after {
   content: " ";
   border-top: solid 0.625rem #fff;
   border-left: 0.4375rem solid transparent;
@@ -298,7 +298,7 @@ footer >a:first-child {
   left: 50%;
   margin-left: 1.5625rem;
 }
-.note-type-header >a {
+.note-type-header > a {
   color: #fff;
   font-size: 0.8125rem;
   text-decoration: none;
@@ -311,14 +311,14 @@ footer >a:first-child {
   padding: 0.625rem 1.25rem;
   font-size: 0;
 }
-.note-type-list >li {
+.note-type-list > li {
   width: 4.375rem;
   height: 4.375rem;
   display: inline-block;
   box-sizing: border-box;
   margin-top: 0.8125rem;
 }
-.note-type-list >li >div {
+.note-type-list > li > div {
   margin: auto;
   width: 2.875rem;
   height: 2.875rem;
@@ -330,11 +330,11 @@ footer >a:first-child {
   text-align: center;
   overflow: hidden;
 }
-.note-type-list >li >div >img {
+.note-type-list > li > div > img {
   max-width: 2.875rem;
   vertical-align: middle;
 }
-.note-type-list >li >em {
+.note-type-list > li > em {
   font-style: normal;
   font-size: 0.75rem;
   width: 100%;
@@ -354,4 +354,55 @@ footer >a:first-child {
   text-align: center !important;
   color: #e3e3e3 !important;
   display: block;
+}
+.agreement-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.314);
+  z-index: 996;
+}
+.agreement-bg .agreement {
+  position: absolute;
+  left: 2rem;
+  right: 2rem;
+  top: 1rem;
+  bottom: 2rem;
+  background-color: #fff;
+}
+.agreement-bg .agreement-ctx {
+  position: absolute;
+  top: 0.625rem;
+  left: 0;
+  right: 0;
+  bottom: 3.125rem;
+  padding: 0rem 0.625rem;
+  font-size: 0.8125rem;
+  color: #606060;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.agreement-bg .agr-btns {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 3.125rem;
+  border-top: solid 1px #e0e0e0;
+  display: box;
+  display: -moz-box;
+  display: -webkit-box;
+}
+.agreement-bg .agr-btns >a {
+  display: block;
+  height: 3.125rem;
+  line-height: 3.125rem;
+  text-align: center;
+  width: 100%;
+  color: #000;
+  text-decoration: none;
+  background-color: #f9f9f9;
 }

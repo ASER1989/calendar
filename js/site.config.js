@@ -11,6 +11,21 @@ window.GetQueryStr = function (name) {
     var r = window.location.search.substr(1).match(reg);
     return r != null ? decodeURIComponent(r[2]) : null;
 }
+var store = {
+    set: function (key, val) {
+        localStorage.setItem(key, val)
+    },
+    get: function (key, def) {
+        def = def || null;
+        return key == null ? def : localStorage.getItem(key);
+    },
+    remove: function (key) {
+        key != null && localStorage.removeItem(key);
+    },
+    removeAll:function () {
+        localStorage.clear();
+    }
+}
 require.libCallback.push(
     function () {
         $.ajax = function (base) {
