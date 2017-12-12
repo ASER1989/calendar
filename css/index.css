@@ -1065,6 +1065,17 @@ footer a:first-child {
     top: 1.2rem;
     z-index: 999 !important;
 }
-cnt-banner img{
+.cnt-banner img{
     max-width: 100%;
+}
+.hastip{
+    border:solid 1px red;
+}
+.hastip:after{
+    content:" ";
+    position: absolute;
+    right:3px;
+    top:3px;
+    border:solid 4px red;
+    border-radius: 10px;
 }

@@ -3,7 +3,7 @@
  */
 
     //全局的年月日，适用于任何时候获取今天的年月日。（很重要）
-var sev_m, sev_y, sev_d, active = 3,sev_week,sev_topyue;
+var sev_m, sev_y, sev_d, active = 3, sev_week, sev_topyue;
 var mySwiper = new Swiper('.swiper-container', {
     initialSlide: 1,
     loop: true,
@@ -554,7 +554,7 @@ function set_top(a) {
         document.getElementById("top_week").innerHTML = weekk;
         document.getElementById("top_yue").innerHTML = yue;
         sev_week = weekk;
-        sev_topyue =yue;
+        sev_topyue = yue;
     } else {
         var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
         var y = a.attr("data_y");
@@ -571,7 +571,7 @@ function set_top(a) {
         document.getElementById("top_week").innerHTML = weekk;
         document.getElementById("top_yue").innerHTML = yue;
         sev_week = weekk;
-        sev_topyue =yue;
+        sev_topyue = yue;
 
         $(".xuanzhong").removeClass('xuanzhong');
         a.addClass("xuanzhong");
@@ -1529,6 +1529,7 @@ function changeCld() {
         }
     }
     $("#appDateText").html(appDate);
+    tipReady(y + '-' + m);
 }
 
 function msgAutoScroll() {
@@ -1560,6 +1561,6 @@ function msgAutoScroll() {
 }
 var idxCtrl = {
     to: function (page) {
-        window.location = page + "?y=" + sev_y + '-' + sev_m + '-' + sev_d+'&week='+sev_week+'&yue='+sev_topyue;
+        window.location = page + "?y=" + sev_y + '-' + sev_m + '-' + sev_d + '&week=' + sev_week + '&yue=' + sev_topyue;
     }
 }

@@ -186,6 +186,15 @@ footer {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
+.agreement-bg .agreement-ctx:after {
+  content: attr(data-txt);
+  position: absolute;
+  left: 3.1rem;
+  top: 3rem;
+  color: #d0d0d0;
+  width: 10rem;
+  text-align: center;
+}
 .agreement-bg .agr-btns {
   position: absolute;
   left: 0;

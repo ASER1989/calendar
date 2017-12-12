@@ -70,12 +70,12 @@
         <!-- end day -->
     </div>
     <!--<section class="cnt-banner-container">-->
-        <section class="cnt-banner swiper-container">
-            <div class="swiper-wrapper" id="__banner_warp">
+    <section class="cnt-banner swiper-container">
+        <div class="swiper-wrapper" id="__banner_warp">
 
-            </div>
-            <div class="swiper-pagination"></div>
-        </section>
+        </div>
+        <div class="swiper-pagination"></div>
+    </section>
     <!--</section>-->
 
     <!-- end header -->
@@ -176,6 +176,29 @@
 <script type="text/javascript" src="js/index.js"></script>
 <script src="js/lib/me.require.js"></script>
 <script type="text/javascript">
+    function tipReady(d) {
+
+        $.ajax({
+            url: "/charge/userrecordlistbymonth",
+            type: 'post',
+            data: {month: d},
+            success: function (data) {
+                if(data.status=="0"){
+                    var dslist = $('#d3 .list');
+
+                    var days = data.data.map(function (item) {
+                        return item.day;
+                    });
+                    for(var i=0,li;li=dslist[i++];){
+                        li = $(li);
+                        var txt = li.find("i").html();
+                        console.log(txt);
+                        days.indexOf(txt)>=0 && li.addClass('hastip');
+                    }
+                }
+            }
+        })
+    }
     require(['./js/site.config.js',
             './js/lib/underscore.js'],
         function () {
@@ -199,14 +222,23 @@
                 success: function (data) {
 
                     $("#__banner_warp").html(_.template($("#_idx_banner_temp").html())(data));
-                    var _bannerSwiper = new Swiper('.cnt-banner', {
-                        autoplay: 1500,
-                        pagination: '.swiper-pagination',
-                        loop: true,
-                        onSlideChangeEnd:null
-                    })
+                    (function () {
+                        var _bannerSwiper = new Swiper('.cnt-banner', {
+                            autoplay: 1500,
+                            pagination: '.swiper-pagination',
+                            loop: true,
+                            onSlideChangeEnd: null
+                        })
+                    })();
+
                 }
             })
+
+
+            var now = new Date();
+            var qrday = now.getFullYear() + '-' + (now.getMonth() + 1);
+            tipReady(qrday);
+
         })
 </script>
 

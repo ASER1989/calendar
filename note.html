@@ -80,158 +80,8 @@
 
 <section class="agreement-bg hide">
     <section class="agreement">
-        <div class="agreement-ctx">
+        <div class="agreement-ctx" data-txt="加载中...">
 
-
-        color: #e3e3e3 !important;
-        display block !important;
-
-        .agreement-bg
-        position fixed
-        top 0
-        left 0
-        right 0
-        bottom: 0
-        background-color #00000050
-        z-index 996
-        .agreement
-        position absolute
-        left 2rem
-        right 2rem
-        top 1rem
-        bottom 2rem
-        background-color #ffffff
-        padding-bottom em(5) em(5) em(50)
-        font-size em(13)
-        color #606060
-        overflow-x hidden
-        overflow-y auto
-        -webkit-overflow-scrolling:touch
-        .agr-btns
-        position absolute
-        left: 0
-        bottom 0
-        right: 0
-        height em(50)
-        border-top solid 1px #e0e0e0
-        display box
-        >a
-        display block
-        h em(50)
-        text-align center
-        width 50%
-        color #000000
-        text-decoration none
-        background-color #f9f9f9
-        &:first-child
-        border-right:solid 1px #d0d0d0
-        &:active
-        color #d0d0d0verflow-y auto
-        -webkit-overflow-scrolling:touch
-        .agr-btns
-        position absolute
-        left: 0
-        bottom 0
-        right: 0
-        height em(50)
-        border-top solid 1px #e0e0e0
-        display box
-        >a
-        display block
-        h em(50)
-        text-align center
-        width 50%
-        color #000000
-        text-decoration none
-        background-color #f9f9f9
-        &:first-child
-        border-right:solid 1px #d0d0d0
-        &:active
-        color #d0d0d0verflow-y auto
-        -webkit-overflow-scrolling:touch
-        .agr-btns
-        position absolute
-        left: 0
-        bottom 0
-        right: 0
-        height em(50)
-        border-top solid 1px #e0e0e0
-        display box
-        >a
-        display block
-        h em(50)
-        text-align center
-        width 50%
-        color #000000
-        text-decoration none
-        background-color #f9f9f9
-        &:first-child
-        border-right:solid 1px #d0d0d0
-        &:active
-        color #d0d0d0verflow-y auto
-        -webkit-overflow-scrolling:touch
-        .agr-btns
-        position absolute
-        left: 0
-        bottom 0
-        right: 0
-        height em(50)
-        border-top solid 1px #e0e0e0
-        display box
-        >a
-        display block
-        h em(50)
-        text-align center
-        width 50%
-        color #000000
-        text-decoration none
-        background-color #f9f9f9
-        &:first-child
-        border-right:solid 1px #d0d0d0
-        &:active
-        color #d0d0d0verflow-y auto
-        -webkit-overflow-scrolling:touch
-        .agr-btns
-        position absolute
-        left: 0
-        bottom 0
-        right: 0
-        height em(50)
-        border-top solid 1px #e0e0e0
-        display box
-        >a
-        display block
-        h em(50)
-        text-align center
-        width 50%
-        color #000000
-        text-decoration none
-        background-color #f9f9f9
-        &:first-child
-        border-right:solid 1px #d0d0d0
-        &:active
-        color #d0d0d0verflow-y auto
-        -webkit-overflow-scrolling:touch
-        .agr-btns
-        position absolute
-        left: 0
-        bottom 0
-        right: 0
-        height em(50)
-        border-top solid 1px #e0e0e0
-        display box
-        >a
-        display block
-        h em(50)
-        text-align center
-        width 50%
-        color #000000
-        text-decoration none
-        background-color #f9f9f9
-        &:first-child
-        border-right:solid 1px #d0d0d0
-        &:active
-        color #d0d0d0
         </div>
         <div class="agr-btns">
             <!--<a href="">拒绝</a>-->
@@ -278,7 +128,8 @@
                     typeLoad: $(".loading"),
                     formAmt: $("#_form_amt"),
                     noteList: $(".note-list"),
-                    agreement: $(".agreement-bg")
+                    agreement: $(".agreement-bg"),
+                    agreeCtx:$('.agreement-ctx')
                 }
                 var event = {
                     init: function () {
@@ -419,6 +270,14 @@
                     }
                 }
                 if(store.get("is-note-apply")!="apply") {
+                    $.ajax({
+                        url:"/charge/useraggree",
+                        success:function (data) {
+                            if(data.status==0){
+                                els.agreeCtx.attr('data-txt','').html(data.data.aggreectn);
+                            }
+                        }
+                    })
                     els.agreement.removeClass("hide");
                 }
                 ctrl.ready();
