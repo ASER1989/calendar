@@ -14,8 +14,8 @@
 </head>
 <body>
 <header>
-    <h2>2017年12月12日</h2>
-    <div>星期二 十月廿五</div>
+    <h2></h2>
+    <div></div>
 </header>
 <section class="tip-content">
     <ul class="tip-list">
@@ -68,18 +68,20 @@
                 pagezoom.calc(function () {
 
                     var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+
                     function dateplugReady() {
-                        $("h2").dateRangePicker({
+                        var datepicker = $("h2").dateRangePicker({
                             onOk: function (y, m, d, fn) {
                                 ctrl.date = y + '-' + m + '-' + d;
                                 ctrl.yue = fn(y, m, d);
                                 var wd = new Date(ctrl.date).getDay();
 
-                                ctrl.week =weeks[wd] ;
+                                ctrl.week = weeks[wd];
                                 ctrl.ready();
                                 ctrl.getList();
                             }
                         });
+                        ctrl.date && datepicker.hide();
                     }
 
 
@@ -88,8 +90,8 @@
                         diaTxt: $(".dialog .input-dia-ctx"),
                         listUl: $('.tip-list'),
                         agreement: $(".agreement-bg"),
-                        agreeCtx:$('.agreement-ctx'),
-                        showLoading:function () {
+                        agreeCtx: $('.agreement-ctx'),
+                        showLoading: function () {
                             els.listUl.html(' <div class="align-center">加载中...</div>');
                         }
                     }
@@ -127,8 +129,8 @@
                             var id = $(this).attr("data-id");
                             ctrl.delItem(id);
                         },
-                        agreeApply:function () {
-                            store.set("is-tips-apply","apply");
+                        agreeApply: function () {
+                            store.set("is-tips-apply", "apply");
                             els.agreement.addClass('hide');
                             dateplugReady();
                         }
@@ -138,8 +140,8 @@
                         week: GetQueryStr('week'),
                         yue: GetQueryStr('yue'),
                         ready: function () {
-                            $('header h2').html(ctrl.date.replace('-', '年').replace('-', '月') + '日');
-                            $('header div').html(ctrl.week + ' ' + ctrl.yue);
+                            ctrl.date && $('header h2').html(ctrl.date.replace('-', '年').replace('-', '月') + '日');
+                            ctrl.week && ctrl.yue && $('header div').html(ctrl.week + ' ' + ctrl.yue);
                         },
                         save: function (fn, callback) {
                             var txt = els.diaTxt.val();
@@ -197,17 +199,17 @@
                             });
                         }
                     }
-                    if(store.get("is-tips-apply")!="apply") {
+                    if (store.get("is-tips-apply") != "apply") {
                         $.ajax({
-                            url:"/charge/useraggree",
-                            success:function (data) {
-                                if(data.status==0){
-                                    els.agreeCtx.attr('data-txt','').html(data.data.aggreectn);
+                            url: "/charge/useraggree",
+                            success: function (data) {
+                                if (data.status == 0) {
+                                    els.agreeCtx.attr('data-txt', '').html(data.data.aggreectn);
                                 }
                             }
                         })
                         els.agreement.removeClass("hide");
-                    }else{
+                    } else {
                         dateplugReady();
                     }
                     ctrl.ready();

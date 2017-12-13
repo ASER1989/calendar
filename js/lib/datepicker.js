@@ -18,7 +18,7 @@
         function DateRangePicker($select, config) {
 
             this.config = config || {};
-            console.log(this.config);
+            // console.log(this.config);
 
             this.$select = $select;
             this.$dateRangePicker = $(TEMPLATE);

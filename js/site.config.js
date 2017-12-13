@@ -2,8 +2,10 @@
  * Created by Lenovo on 2017/12/5.
  */
 window._config = __config = {
-    host: "http://jz.023qx.net/api/",
-    resHost: "http://jz.023qx.net/",
+    // resHost: "http://jz.023qx.net/",
+    // host: "http://jz.023qx.net/api/",
+    host: "http://m3.bjzjxf.com/api/",
+    resHost: "http://m3.bjzjxf.com/",
 
 }
 window.GetQueryStr = function (name) {
