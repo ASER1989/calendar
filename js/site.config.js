@@ -30,6 +30,12 @@ var store = {
 }
 require.libCallback.push(
     function () {
+        $.ajaxSetup({
+            xhrFields:{
+                withCredentials:true
+            }
+        });
+
         $.ajax = function (base) {
             return function (opt) {
                 if (opt) {
