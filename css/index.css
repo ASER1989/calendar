@@ -115,7 +115,7 @@
 
 /*start day*/
 .content {
-    padding-top: 2.7rem;
+    padding-top: 2.2rem;
     padding-bottom: 1rem;
 }
 
@@ -215,7 +215,7 @@
 
 .day-left p em {
     font-size: .15rem;
-    margin-left: auto;
+    /*margin-left: auto;*/
 }
 
 .day-left p i {
