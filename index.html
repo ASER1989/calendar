@@ -214,7 +214,7 @@
                         var date = +new Date(end.replace(/-/g,"/") + " 23:59:59");
                         var let = date - new Date();
                         var res = parseInt(let * 1 / 1000 / 60 / 60 / 24);
- 
+
                         return res > 0 ? res : 0;
                     }
 
