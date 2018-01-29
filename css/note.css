@@ -404,6 +404,7 @@ footer > a:first-child {
   display: box;
   display: -moz-box;
   display: -webkit-box;
+  z-index: 9999;
 }
 .agreement-bg .agr-btns >a {
   display: block;

@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>账簿</title>
-    <link rel="stylesheet" href="css/note.css">
+    <link rel="stylesheet" href="css/note.css?v=20180129A">
 
 </head>
 <body>
@@ -85,7 +85,7 @@
         </div>
         <div class="agr-btns">
             <!--<a href="">拒绝</a>-->
-            <a href="javascript:void(0)" data-click="agreeApply">已阅读并同意</a>
+            <a id="__agreeApply" href="javascript:void(0)">已阅读并同意</a>
         </div>
     </section>
 </section>
@@ -143,6 +143,8 @@
                                 el.off().on(type, event[el.attr("data-" + type)]);
                             }
                         }
+
+                        $("#__agreeApply").on("click",event.agreeApply);
                     },
                     cancel: function () {
                         els.dialog.addClass('hide');
