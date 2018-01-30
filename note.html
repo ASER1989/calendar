@@ -35,6 +35,7 @@
 </section>
 <footer>
     <a href="./analysis.html">收支统计</a>
+    <a href="./calc.html" class="note-calc">计算器</a>
     <a href="javascript:void(0)" data-click="showTypes">添加收支记录</a>
 
 </footer>
@@ -59,11 +60,15 @@
 </section>
 <section class="note-types hide">
     <section class="note-type-header">
-        <div>收入</div>
-        <select data-change="typeChange">
-            <option value="1">收入</option>
-            <option value="2">支出</option>
-        </select>
+        <!--<div>收入</div>-->
+        <section>
+            <a class="a-checked" href="javascript:void(0)" data-val="1" data-click="typeChange">收入</a>
+            <a href="javascript:void(0)" data-val="2" data-click="typeChange">支出</a>
+        </section>
+        <!--<select data-change="typeChange">-->
+            <!--<option value="1">收入</option>-->
+            <!--<option value="2">支出</option>-->
+        <!--</select>-->
         <a href="javascript:void(0);" data-click="typesHide">取消</a>
     </section>
     <ul class="note-type-list">
@@ -120,6 +125,8 @@
             './js/lib/underscore.js'],
         function () {
             var pagezoom = new zoom($);
+            var today = new Date();
+
             pagezoom.calc(function () {
                 var els = {
                     dialog: $("#_note_form"),
@@ -129,7 +136,7 @@
                     formAmt: $("#_form_amt"),
                     noteList: $(".note-list"),
                     agreement: $(".agreement-bg"),
-                    agreeCtx:$('.agreement-ctx')
+                    agreeCtx: $('.agreement-ctx')
                 }
                 var event = {
                     init: function () {
@@ -144,7 +151,7 @@
                             }
                         }
 
-                        $("#__agreeApply").on("click",event.agreeApply);
+                        $("#__agreeApply").on("click", event.agreeApply);
                     },
                     cancel: function () {
                         els.dialog.addClass('hide');
@@ -166,11 +173,15 @@
                         els.typesEl.addClass('hide');
                     },
                     typeChange: function () {
-                        var txt = $(this).find("option").not(function () {
-                            return !this.selected
-                        }).text();
-                        $(this).parents('.note-type-header').find("div").html(txt);
-                        var val = $(this).val();
+//                        var txt = $(this).find("option").not(function () {
+//                            return !this.selected
+//                        }).text();
+//                        $(this).parents('.note-type-header').find("div").html(txt);
+//                        var val = $(this).val();
+                        $(this).parent().find("a").removeClass("a-checked");
+                        $(this).addClass("a-checked");
+
+                        var val = $(this).attr("data-val");
                         ctrl.chooseBigType = val;
                         ctrl.loadNoteType(val);
 
@@ -183,8 +194,8 @@
                         var id = $(this).attr("data-id");
                         ctrl.delNote(id);
                     },
-                    agreeApply:function () {
-                        store.set("is-note-apply","apply");
+                    agreeApply: function () {
+                        store.set("is-note-apply", "apply");
                         els.agreement.addClass('hide');
                     }
 
@@ -195,9 +206,9 @@
                     noteList: _.template($("#__note_list_temp").html())
                 }
                 var ctrl = {
-                    date: GetQueryStr('y'),
-                    week:GetQueryStr('week'),
-                    yue:GetQueryStr('yue'),
+                    date: GetQueryStr('y') || today.getFullYear(),
+                    week: GetQueryStr('week') || today.getDay(),
+                    yue: GetQueryStr('yue') || today.getMonth() + 1,
                     chooseBigType: 1,
                     chooseTypeid: 0,
                     ready: function () {
@@ -259,7 +270,7 @@
                         $.ajax({
                             url: "/charge/delcharge",
                             data: {id: id},
-                            type:"POST",
+                            type: "POST",
                             success: function (data) {
                                 if (data.status == 0) {
                                     ctrl.getNote();
@@ -271,12 +282,12 @@
                         })
                     }
                 }
-                if(store.get("is-note-apply")!="apply") {
+                if (store.get("is-note-apply") != "apply") {
                     $.ajax({
-                        url:"/charge/useraggree",
-                        success:function (data) {
-                            if(data.status==0){
-                                els.agreeCtx.attr('data-txt','').html(data.data.aggreectn);
+                        url: "/charge/useraggree",
+                        success: function (data) {
+                            if (data.status == 0) {
+                                els.agreeCtx.attr('data-txt', '').html(data.data.aggreectn);
                             }
                         }
                     })

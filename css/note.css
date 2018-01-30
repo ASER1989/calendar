@@ -257,6 +257,24 @@ footer > a:first-child {
   -moz-box-shadow: 0 0 10px #57abff;
   box-shadow: 0 0 10px #57abff;
 }
+.note-type-header section {
+  margin: 0 auto;
+  border: 0;
+  font-size: 1rem;
+  vertical-align: middle;
+  background-color: #57abff;
+  position: relative;
+}
+.note-type-header section >a {
+  text-decoration: none;
+  color: #fff;
+  padding: 0 0.125rem;
+  display: inline-block;
+}
+.note-type-header section >a.a-checked {
+  color: #000;
+  font-weight: 600;
+}
 .note-type-header select {
   margin: 0 auto;
   border: 0;
@@ -342,6 +360,25 @@ footer > a:first-child {
   display: block;
   margin-top: 0.1875rem;
   color: #707070;
+}
+.note-calc {
+  position: absolute;
+  display: block;
+  width: 3.75rem;
+  height: 3.75rem;
+  line-height: 3.75rem;
+  text-align: center;
+  -webkit-border-radius: 3.75rem;
+  -moz-border-radius: 3.75rem;
+  border-radius: 3.75rem;
+  border: solid 1px #57abff;
+  top: -1.875rem;
+  left: 50%;
+  margin-left: -1.9375rem;
+  z-index: 9;
+  background-color: rgba(255,255,255,0.9);
+  font-weight: 500;
+  color: #57abff;
 }
 .hide {
   display: none;

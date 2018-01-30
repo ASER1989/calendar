@@ -203,6 +203,22 @@ footer
   align-items: center;
   color: #fff;
   box-shadow: 0 0 10px #57abff;
+  section
+    margin 0 auto
+    border 0
+    font-size em(16)
+    vertical-align middle
+    background-color #57abff
+    position relative
+    >a
+      text-decoration none
+      color #FFFFFF
+      padding 0 em(2)
+      display inline-block
+      &.a-checked
+        color #000000
+        font-weight 600
+
   select
     margin 0 auto
     border 0
@@ -277,7 +293,21 @@ footer
       display block
       margin-top em(3)
       color #707070
-
+.note-calc
+  position absolute
+  display block
+  width em(60)
+  h em(60)
+  text-align center
+  border-radius em(60)
+  border solid 1px #57abff
+  top: em(-30);
+  left: 50%;
+  margin-left: em(-31);
+  z-index: 9;
+  background-color: rgba(255, 255, 255, 0.90);
+  font-weight 500;
+  color #57abff;
 .hide
   display none !important
 
