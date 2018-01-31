@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>账簿</title>
-    <link rel="stylesheet" href="css/note.css?v=20180129A">
+    <link rel="stylesheet" href="css/note.css?v=20180130B">
 
 </head>
 <body>
@@ -62,8 +62,8 @@
     <section class="note-type-header">
         <!--<div>收入</div>-->
         <section>
-            <a class="a-checked" href="javascript:void(0)" data-val="1" data-click="typeChange">收入</a>
-            <a href="javascript:void(0)" data-val="2" data-click="typeChange">支出</a>
+            <a href="javascript:void(0)" data-val="1" data-click="typeChange">收入</a>
+            <a  class="a-checked" href="javascript:void(0)" data-val="2" data-click="typeChange">支出</a>
         </section>
         <!--<select data-change="typeChange">-->
             <!--<option value="1">收入</option>-->
@@ -209,7 +209,7 @@
                     date: GetQueryStr('y') || today.getFullYear(),
                     week: GetQueryStr('week') || today.getDay(),
                     yue: GetQueryStr('yue') || today.getMonth() + 1,
-                    chooseBigType: 1,
+                    chooseBigType: 2,
                     chooseTypeid: 0,
                     ready: function () {
                         $('header h2').html(ctrl.date.replace('-', '年').replace('-', '月') + '日');
