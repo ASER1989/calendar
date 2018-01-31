@@ -227,8 +227,9 @@ var mySwiper = new Swiper('#_calenda_container', {
             $("#_calenda_container").css("paddingBottom", "");
 
         }
-        swiper.unlockSwipes();
         tipReady(sev_y+'-'+sev_m);
+
+        swiper.unlockSwipes();
     }
 
 });

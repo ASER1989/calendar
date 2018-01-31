@@ -155,7 +155,7 @@
 <a class="idx-link" href="countdown.html">计时S</a>
 
 <footer>
-    <a  href="javascript:void(0);" onclick="idxCtrl.to('tips.html')">添加提醒</a>
+    <a href="javascript:void(0);" onclick="idxCtrl.to('tips.html')">添加提醒</a>
     <a href="javascript:void(0);" onclick="idxCtrl.to('note.html')">添加记账</a>
 </footer>
 <script type="text/html" id="_idx_topmsg_temp">
@@ -173,11 +173,14 @@
 <script type="text/javascript" src="js/swiper-3.3.1.min.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/touch.min.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
+<!--<script type="text/javascript" src="js/index.js"></script>-->
 <script src="js/lib/me.require.js"></script>
 <script type="text/javascript">
     function tipReady(d) {
-
+        var dv = d.split("-");
+        dv[1]=dv[1][0]=="0"?dv[1][1]:dv[1];
+        d = dv.join("-");
+        store.set("last-tip-ready", d);
         $.ajax({
             url: "/charge/userrecordlistbymonth",
             type: 'post',
@@ -204,14 +207,25 @@
         });
     }
 
-    require(['./js/site.config.js',
+    function langqtip() {
+        if (store.get("need-reload-tip") == "reload") {
+            var d = store.get("last-tip-ready");
+            tipReady(d);
+            store.set("need-reload-tip", "over");
+        }
+        setTimeout(langqtip, 1000);
+    }
+
+    require([
+            './js/index.js',
+            './js/site.config.js',
             './js/lib/underscore.js'],
         function () {
             $.ajax({
                 url: '/charge/siterecordlist',
                 success: function (data) {
                     data.getLet = function (end) {
-                        var date = +new Date(end.replace(/-/g,"/") + " 23:59:59");
+                        var date = +new Date(end.replace(/-/g, "/") + " 23:59:59");
                         var let = date - new Date();
                         var res = parseInt(let * 1 / 1000 / 60 / 60 / 24);
 
@@ -243,6 +257,7 @@
             var now = new Date();
             var qrday = now.getFullYear() + '-' + (now.getMonth() + 1);
             tipReady(qrday);
+            langqtip();
 
         })
 </script>

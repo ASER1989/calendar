@@ -140,6 +140,9 @@
                         week: GetQueryStr('week'),
                         yue: GetQueryStr('yue'),
                         ready: function () {
+                            //通知首页
+                            store.set("need-reload-tip","reload");
+
                             ctrl.date && $('header h2').html(ctrl.date.replace('-', '年').replace('-', '月') + '日');
                             ctrl.week && ctrl.yue && $('header div').html(ctrl.week + ' ' + ctrl.yue);
                         },
