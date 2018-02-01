@@ -33,7 +33,14 @@ header
   display block
   list-style none
   padding em(10) em(15)
-  > li
+  .note-list-remark
+    height:auto
+    line-height em(26)
+    background-color #fafafa
+    display none;
+    .show
+      display block;
+  .note-list-item
     line-height em(20);
     text-align left
     border-bottom solid 1px #f0f0f0
@@ -145,16 +152,17 @@ footer
   padding em(10) em(10)
   width em(280)
   height em(120)
-  background-color #fafafa
+  background-color #ffffff
   margin 0
   font-size em(14)
   > div
     margin em(3) 0
     padding-bottom em(5)
+    line-height em(32)
   select, input
-    width: em(180);
-    height em(26)
-    border: solid 1px #f0f0f0;
+    width: em(210);
+    height em(32)
+    border: solid 1px #d0d0d0;
     background-color: #fafafa;
     color: #333;
     font-size em(13)
@@ -162,16 +170,17 @@ footer
     border-radius: em(3);
   label
     vertical-align top
+    font-weight 600
 
 .input-dia-remark
-  border: solid 1px #f0f0f0;
+  border: solid 1px #d0d0d0;
   resize: none;
   outline: 0;
   z-index: 3;
   color: #333;
   overflow: hidden;
   padding em(5) em(5)
-  width em(180);
+  width em(210);
   height em(60)
   background-color #fafafa
   margin 0

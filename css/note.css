@@ -51,7 +51,16 @@ header div {
   list-style: none;
   padding: 0.625rem 0.9375rem;
 }
-.note-list > li {
+.note-list .note-list-remark {
+  height: auto;
+  line-height: 1.625rem;
+  background-color: #fafafa;
+  display: none;
+}
+.note-list .note-list-remark .show {
+  display: block;
+}
+.note-list .note-list-item {
   line-height: 1.25rem;
   text-align: left;
   border-bottom: solid 1px #f0f0f0;
@@ -66,10 +75,10 @@ header div {
   -moz-box-align: center;
   box-align: center;
 }
-.note-list > li:last-child {
+.note-list .note-list-item:last-child {
   border: none;
 }
-.note-list > li > em {
+.note-list .note-list-item > em {
   color: #f00;
   font-style: normal;
   position: absolute;
@@ -79,10 +88,10 @@ header div {
   height: 1.25rem;
   width: 2.5rem;
 }
-.note-list > li > em.in {
+.note-list .note-list-item > em.in {
   color: #006400;
 }
-.note-list > li > a {
+.note-list .note-list-item > a {
   display: block;
   position: absolute;
   right: 0;
@@ -188,19 +197,20 @@ footer > a:first-child {
   padding: 0.625rem 0.625rem;
   width: 17.5rem;
   height: 7.5rem;
-  background-color: #fafafa;
+  background-color: #fff;
   margin: 0;
   font-size: 0.875rem;
 }
 .input-dia-form > div {
   margin: 0.1875rem 0;
   padding-bottom: 0.3125rem;
+  line-height: 2rem;
 }
 .input-dia-form select,
 .input-dia-form input {
-  width: 11.25rem;
-  height: 1.625rem;
-  border: solid 1px #f0f0f0;
+  width: 13.125rem;
+  height: 2rem;
+  border: solid 1px #d0d0d0;
   background-color: #fafafa;
   color: #333;
   font-size: 0.8125rem;
@@ -211,16 +221,17 @@ footer > a:first-child {
 }
 .input-dia-form label {
   vertical-align: top;
+  font-weight: 600;
 }
 .input-dia-remark {
-  border: solid 1px #f0f0f0;
+  border: solid 1px #d0d0d0;
   resize: none;
   outline: 0;
   z-index: 3;
   color: #333;
   overflow: hidden;
   padding: 0.3125rem 0.3125rem;
-  width: 11.25rem;
+  width: 13.125rem;
   height: 3.75rem;
   background-color: #fafafa;
   margin: 0;

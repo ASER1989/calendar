@@ -24,17 +24,31 @@ var store = {
     remove: function (key) {
         key != null && localStorage.removeItem(key);
     },
-    removeAll:function () {
+    removeAll: function () {
         localStorage.clear();
     }
 }
 require.libCallback.push(
     function () {
-        $.ajaxSetup({
-            xhrFields:{
-                withCredentials:true
-            }
-        });
+
+        // try {
+        //     if($.ajaxSetup){
+        //         $.ajaxSetup({
+        //             xhrFields: {
+        //                 withCredentials: true
+        //             }
+        //         });
+        //     }else{
+        //         $.ajaxSettings.beforeSend = function (xhr) {
+        //             // see https://github.com/madrobby/zepto/issues/274
+        //             xhr.withCredentials = true;  // TODO(elsigh): Do this in zepto w/ xhrFields.
+        //         };
+        //     }
+        //
+        // } catch (e) {
+        //
+        // }
+
 
         $.ajax = function (base) {
             return function (opt) {
@@ -46,9 +60,10 @@ require.libCallback.push(
                 if (opt.success) {
                     opt.success = function (successfn) {
                         return function (res) {
-                            try{
+                            try {
                                 res = Object.prototype.toString.call(res) == "[object String]" ? JSON.parse(res) : res;
-                            }catch (e){}
+                            } catch (e) {
+                            }
 
                             successfn.call(null, res);
                         }

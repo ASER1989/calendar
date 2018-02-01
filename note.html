@@ -46,10 +46,10 @@
                 <label>金额：</label>
                 <input id="_form_amt" type="number" value="" placeholder="请输入收支金额">
             </div>
-            <!--<div>-->
-            <!--<label>备注：</label>-->
-            <!--<textarea class="input-dia-remark" placeholder="请输入备注"></textarea>-->
-            <!--</div>-->
+            <div>
+                <label>备注：</label>
+                <textarea id="_form_remark" class="input-dia-remark" placeholder="请输入备注"></textarea>
+            </div>
         </div>
 
         <div class="dia-opt">
@@ -63,11 +63,11 @@
         <!--<div>收入</div>-->
         <section>
             <a href="javascript:void(0)" data-val="1" data-click="typeChange">收入</a>
-            <a  class="a-checked" href="javascript:void(0)" data-val="2" data-click="typeChange">支出</a>
+            <a class="a-checked" href="javascript:void(0)" data-val="2" data-click="typeChange">支出</a>
         </section>
         <!--<select data-change="typeChange">-->
-            <!--<option value="1">收入</option>-->
-            <!--<option value="2">支出</option>-->
+        <!--<option value="1">收入</option>-->
+        <!--<option value="2">支出</option>-->
         <!--</select>-->
         <a href="javascript:void(0);" data-click="typesHide">取消</a>
     </section>
@@ -97,10 +97,15 @@
 <script type="text/html" id="__note_list_temp">
     <%for(var i=0,item;item=data[i++];){%>
     <li>
-        <em class="<%=item.usemoney>0?'in':''%>">[<%=item.usemoney>0?'收入':'支出'%>]</em>
-        <div class="note-price ellipsis"><%=item.usemoney%></div>
-        <div class="note-remark"><%=item.chargetype%> <span> <%=item.recordtime%></span></div>
-        <a href="javascript:void(0);" data-id="<%=item.id%>" data-click="noteDel"></a>
+        <div class="note-list-item" data-click="showRemark">
+            <em class="<%=item.usemoney>0?'in':''%>">[<%=item.usemoney>0?'收入':'支出'%>]</em>
+            <div class="note-price ellipsis"><%=item.usemoney%></div>
+            <div class="note-remark"><%=item.chargetype%> <span> <%=item.recordtime%></span></div>
+            <a href="javascript:void(0);" data-id="<%=item.id%>" data-click="noteDel"></a>
+        </div>
+        <div class="note-list-remark">
+            <%=item.remark%>
+        </div>
     </li>
     <%}%>
     <%if(data==null || data.length==0){%>
@@ -134,6 +139,7 @@
                     typesEl: $(".note-types"),
                     typeLoad: $(".loading"),
                     formAmt: $("#_form_amt"),
+                    formRemark: $("#_form_remark"),
                     noteList: $(".note-list"),
                     agreement: $(".agreement-bg"),
                     agreeCtx: $('.agreement-ctx')
@@ -156,11 +162,16 @@
                     cancel: function () {
                         els.dialog.addClass('hide');
                         els.formAmt.val();
+                        els.formRemark.val();
                     },
                     submit: function () {
                         ctrl.addNote();
 //                        els.dialog.addClass('hide');
 //                        els.diaTxt.val('');
+                    },
+                    showRemark:function () {
+                      $(".note-list-remark").removeClass("show");
+                      $(this).addClass("show");
                     },
                     showDialog: function () {
                         els.dialog.removeClass('hide');
@@ -242,7 +253,8 @@
                                 bigtype: ctrl.chooseBigType,
                                 chargetypeid: ctrl.chooseTypeid,
                                 usemoney: amt,
-                                recordtime: ctrl.date
+                                recordtime: ctrl.date,
+                                remark: els.formRemark.val()
                             },
                             success: function (data) {
                                 event.typesHide();
