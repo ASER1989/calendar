@@ -320,7 +320,7 @@
     display: flex;
     display: -webkit-flex;
     display: -ms-flexbox;
-    height: .48rem;
+    height: .3rem;
 }
 
 .week ul li {
@@ -332,11 +332,11 @@
     -webkit-flex: auto;
     justify-content: center;
     align-items: center;
-    font-size: .13rem;
+    font-size: .12rem;
 }
 
 .tables {
-    font-size: .14rem;
+    font-size: .12rem;
     color: #666;
     font-family: "微软雅黑";
     display: flex;
@@ -365,7 +365,7 @@
     flex-shrink: 0;
     flex-basis: 13%;
     justify-content: center;
-    padding: .04rem 0;
+    padding: 0 0;
     position: relative;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -392,8 +392,8 @@
 
 .swiper-slide table tr {
     text-align: center;
-    height: .58rem;
-    margin-bottom: .08rem;
+    height: .55rem;
+    margin-bottom: .02rem;
 }
 
 tr .not_this {
