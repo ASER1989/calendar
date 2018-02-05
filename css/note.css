@@ -49,18 +49,23 @@ header div {
 .note-list {
   display: block;
   list-style: none;
-  padding: 0.625rem 0.9375rem;
+  padding: 0.625rem 0;
 }
 .note-list .note-list-remark {
   height: auto;
   line-height: 1.625rem;
   background-color: #fafafa;
   display: none;
+  padding: 0.3125rem 3.5rem;
+  min-height: 1.875rem;
 }
-.note-list .note-list-remark .show {
+.note-list .note-list-remark.show {
   display: block;
 }
-.note-list .note-list-item {
+.note-list-item {
+  padding: 0 0.9375rem;
+}
+.note-list-item >div {
   line-height: 1.25rem;
   text-align: left;
   border-bottom: solid 1px #f0f0f0;
@@ -75,10 +80,10 @@ header div {
   -moz-box-align: center;
   box-align: center;
 }
-.note-list .note-list-item:last-child {
+.note-list-item >div:last-child {
   border: none;
 }
-.note-list .note-list-item > em {
+.note-list-item >div > em {
   color: #f00;
   font-style: normal;
   position: absolute;
@@ -88,10 +93,10 @@ header div {
   height: 1.25rem;
   width: 2.5rem;
 }
-.note-list .note-list-item > em.in {
+.note-list-item >div > em.in {
   color: #006400;
 }
-.note-list .note-list-item > a {
+.note-list-item >div > a {
   display: block;
   position: absolute;
   right: 0;
@@ -102,15 +107,15 @@ header div {
   background: url("../images/btn_del.png") no-repeat;
   background-size: 100% auto;
 }
-.note-list .note-price {
+.note-list-item .note-price {
   width: 5rem;
 }
-.note-list .note-remark {
+.note-list-item .note-remark {
   width: 9.125rem;
   color: #707070;
   padding-left: 0.3125rem;
 }
-.note-list .note-remark > span {
+.note-list-item .note-remark > span {
   float: right;
 }
 footer {

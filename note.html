@@ -98,10 +98,12 @@
     <%for(var i=0,item;item=data[i++];){%>
     <li>
         <div class="note-list-item" data-click="showRemark">
-            <em class="<%=item.usemoney>0?'in':''%>">[<%=item.usemoney>0?'收入':'支出'%>]</em>
-            <div class="note-price ellipsis"><%=item.usemoney%></div>
-            <div class="note-remark"><%=item.chargetype%> <span> <%=item.recordtime%></span></div>
-            <a href="javascript:void(0);" data-id="<%=item.id%>" data-click="noteDel"></a>
+            <div>
+                <em class="<%=item.usemoney>0?'in':''%>">[<%=item.usemoney>0?'收入':'支出'%>]</em>
+                <div class="note-price ellipsis"><%=item.usemoney%></div>
+                <div class="note-remark"><%=item.chargetype%> <span> <%=item.recordtime%></span></div>
+                <a href="javascript:void(0);" data-id="<%=item.id%>" data-click="noteDel"></a>
+            </div>
         </div>
         <div class="note-list-remark">
             <%=item.remark%>
@@ -169,9 +171,9 @@
 //                        els.dialog.addClass('hide');
 //                        els.diaTxt.val('');
                     },
-                    showRemark:function () {
-                      $(".note-list-remark").removeClass("show");
-                      $(this).addClass("show");
+                    showRemark: function () {
+                        $(".note-list-remark").removeClass("show");
+                        $(this).parent().find(".note-list-remark").addClass("show");
                     },
                     showDialog: function () {
                         els.dialog.removeClass('hide');

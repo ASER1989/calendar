@@ -32,15 +32,19 @@ header
 .note-list
   display block
   list-style none
-  padding em(10) em(15)
+  padding em(10) 0
   .note-list-remark
     height:auto
     line-height em(26)
     background-color #fafafa
     display none;
-    .show
+    padding em(5) em(56)
+    min-height em(30)
+    &.show
       display block;
-  .note-list-item
+.note-list-item
+  padding 0 em(15)
+  >div
     line-height em(20);
     text-align left
     border-bottom solid 1px #f0f0f0
