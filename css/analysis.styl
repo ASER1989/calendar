@@ -6,7 +6,7 @@
 
 header
   height em(70)
-  background-color: #fafafa;
+  background-color: #57abff;
   border-bottom: solid 1px #e3e3e3;
   box-shadow 0 0 10px #f0f0f0
   padding-top em(10)
@@ -27,6 +27,36 @@ header
   .aly-header
     position relative
     text-align center
+
+.alaly-type-header
+  position fixed
+  left 0
+  right 0
+  background: #57abff;
+  height: em(44);
+  padding: 0 3%;
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  flex-wrap: wrap;
+  align-items: center;
+  color: #fff;
+  box-shadow: 0 0 10px #57abff;
+  section
+    margin 0 auto
+    border 0
+    font-size em(16)
+    vertical-align middle
+    background-color #57abff
+    position relative
+    >a
+      text-decoration none
+      color #000000
+      padding 0 em(5)
+      display inline-block
+      &.a-checked
+        font-weight 600
+        color #FFFFFF
     select
       margin 0 auto
       border 0

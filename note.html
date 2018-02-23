@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1,maximum-scale=1,maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>账簿</title>
-    <link rel="stylesheet" href="css/note.css?v=20180130B">
+    <link rel="stylesheet" href="css/note.css?v=20180205A">
 
 </head>
 <body>
@@ -97,7 +97,7 @@
 <script type="text/html" id="__note_list_temp">
     <%for(var i=0,item;item=data[i++];){%>
     <li>
-        <div class="note-list-item" data-click="showRemark">
+       <div class="note-list-item">
             <div>
                 <em class="<%=item.usemoney>0?'in':''%>">[<%=item.usemoney>0?'收入':'支出'%>]</em>
                 <div class="note-price ellipsis"><%=item.usemoney%></div>
@@ -105,7 +105,7 @@
                 <a href="javascript:void(0);" data-id="<%=item.id%>" data-click="noteDel"></a>
             </div>
         </div>
-        <div class="note-list-remark">
+        <div class="note-list-remark show">
             <%=item.remark%>
         </div>
     </li>

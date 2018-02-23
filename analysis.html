@@ -14,11 +14,17 @@
 <body>
 <header>
     <div class="aly-header">
-        <div>收入</div>
-        <select data-change="typeChange">
-            <option value="1">收入</option>
-            <option value="2">支出</option>
-        </select>
+        <!--<div>收入</div>-->
+        <!--<select data-change="typeChange">-->
+        <!--<option value="1">收入</option>-->
+        <!--<option value="2">支出</option>-->
+        <!--</select>-->
+        <section class="alaly-type-header">
+            <section>
+                <a href="javascript:void(0)" data-val="1" data-click="typeChange">收入</a>
+                <a class="a-checked" href="javascript:void(0)" data-val="2" data-click="typeChange">支出</a>
+            </section>
+        </section>
     </div>
     <section id="_analysis_date" class="date-section">
 
@@ -57,7 +63,7 @@
                     }
 
                     var ctrl = {
-                        typeid: 1,
+                        typeid:2,
                         startDate: null,
                         endDate: null,
                         chartBox: $('#analysis-box'),
@@ -123,11 +129,17 @@
                             }
                         },
                         typeChange: function () {
-                            var txt = $(this).find("option").not(function () {
-                                return !this.selected
-                            }).text();
-                            $(this).parents('.aly-header').find("div").html(txt);
-                            var val = $(this).val();
+//                            var txt = $(this).find("option").not(function () {
+//                                return !this.selected
+//                            }).text();
+//                            $(this).parents('.aly-header').find("div").html(txt);
+//                            var val = $(this).val();
+
+                            $(this).parent().find("a").removeClass("a-checked");
+                            $(this).addClass("a-checked");
+
+                            var val = $(this).attr("data-val");
+
                             ctrl.typeid = val;
                             ctrl.loadData();
 
