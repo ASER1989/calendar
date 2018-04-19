@@ -43,7 +43,8 @@
             './js/site.config.js',
             './js/lib/echarts.min.js'],
         function () {
-            require(['./js/lib/datepicker.js'], function () {
+            var v = (+new Date());
+            require(['./js/lib/datepicker.js?v=' + v], function () {
                 var pagezoom = new zoom($);
                 pagezoom.calc(function () {
 
@@ -63,7 +64,7 @@
                     }
 
                     var ctrl = {
-                        typeid:2,
+                        typeid: 2,
                         startDate: null,
                         endDate: null,
                         chartBox: $('#analysis-box'),

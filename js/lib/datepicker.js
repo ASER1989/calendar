@@ -244,7 +244,9 @@
 
                 /*时间区间任意化*/
                 var _that = self.dateRangePicker;
-                var endDate = new Date(self.visibleYear()+'-'+self.visibleMonth()+'-'+day);
+
+
+                var endDate = new Date(self.visibleYear()+'/'+self.visibleMonth()+'/'+day);
 
 
                 if(endDate<_that.startDate()){
