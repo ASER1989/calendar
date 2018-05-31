@@ -1,0 +1,218 @@
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: nowrap;
+  white-space: nowrap;
+}
+body {
+  font-family: Arial, "Microsoft Yahei", '微软雅黑';
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  height: 4.375rem;
+  background-color: #fafafa;
+  border-bottom: solid 1px #e3e3e3;
+  -webkit-box-shadow: 0 0 10px #f0f0f0;
+  -moz-box-shadow: 0 0 10px #f0f0f0;
+  box-shadow: 0 0 10px #f0f0f0;
+  padding-top: 0.625rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+header h2 {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.25rem;
+}
+header div {
+  text-align: center;
+  font-size: 0.8125rem;
+  height: 1.625rem;
+  line-height: 1.625rem;
+}
+.tip-content {
+  margin-top: 4.375rem;
+  padding-bottom: 2.5rem;
+}
+.tip-list {
+  display: block;
+  list-style: none;
+  padding: 0.625rem 0.9375rem;
+}
+.tip-list >li {
+  line-height: 1.25rem;
+  text-align: left;
+  border-bottom: solid 1px #f0f0f0;
+  padding: 0.625rem 2rem 0.625rem 0;
+  font-size: 0.8125rem;
+  color: #333;
+  position: relative;
+}
+.tip-list >li:last-child {
+  border: none;
+}
+.tip-list >li >a {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -0.625rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: url("../images/btn_del.png") no-repeat;
+  background-size: 100% auto;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  background-color: #fefefe;
+  border-top: solid 1px #d0d0d0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: 96;
+}
+.dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 100;
+}
+.dialog .dia-content {
+  background-color: #fff;
+  width: 17.5rem;
+  height: 10rem;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  margin-left: -8.75rem;
+  margin-top: -5.3125rem;
+  -webkit-border-radius: 0.1875rem;
+  -moz-border-radius: 0.1875rem;
+  border-radius: 0.1875rem;
+  overflow: hidden;
+  font-size: 0;
+}
+.dialog .dia-opt {
+  border-top: solid 1px #d0d0d0;
+  height: 2.5rem;
+  width: 17.5rem;
+  margin: 0;
+  display: box;
+  display: -moz-box;
+  display: -webkit-box;
+}
+.dialog .dia-opt >a {
+  display: block;
+  width: 8.75rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #3c7500;
+  text-decoration: none;
+}
+.dialog .dia-opt >a:first-child {
+  border-right: solid 1px #d0d0d0;
+  color: #707070;
+}
+.input-dia-ctx {
+  border: 0;
+  resize: none;
+  outline: 0;
+  z-index: 3;
+  color: #333;
+  overflow: hidden;
+  padding: 0.625rem 0.625rem;
+  width: 17.5rem;
+  height: 7.5rem;
+  background-color: #fafafa;
+  margin: 0;
+  font-size: 0.875rem;
+}
+.hide {
+  display: none;
+}
+.align-center {
+  text-align: center !important;
+  color: #e3e3e3 !important;
+}
+.agreement-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.314);
+  z-index: 996;
+}
+.agreement-bg .agreement {
+  position: absolute;
+  left: 2rem;
+  right: 2rem;
+  top: 1rem;
+  bottom: 2rem;
+  background-color: #fff;
+}
+.agreement-bg .agreement-ctx {
+  position: absolute;
+  top: 0.625rem;
+  left: 0;
+  right: 0;
+  bottom: 3.125rem;
+  padding: 0rem 0.625rem;
+  font-size: 0.8125rem;
+  color: #606060;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.agreement-bg .agreement-ctx:after {
+  content: attr(data-txt);
+  position: absolute;
+  left: 3.1rem;
+  top: 3rem;
+  color: #d0d0d0;
+  width: 10rem;
+  text-align: center;
+}
+.agreement-bg .agr-btns {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 3.125rem;
+  border-top: solid 1px #e0e0e0;
+  display: box;
+  display: -moz-box;
+  display: -webkit-box;
+}
+.agreement-bg .agr-btns >a {
+  display: block;
+  height: 3.125rem;
+  line-height: 3.125rem;
+  text-align: center;
+  width: 100%;
+  color: #000;
+  text-decoration: none;
+  background-color: #f9f9f9;
+}
