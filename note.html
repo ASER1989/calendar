@@ -224,6 +224,7 @@
                     yue: GetQueryStr('yue') || today.getMonth() + 1,
                     chooseBigType: 2,
                     chooseTypeid: 0,
+                    isPost:false,
                     ready: function () {
                         $('header h2').html(ctrl.date.replace('-', '年').replace('-', '月') + '日');
                         $('header div').html(ctrl.week + ' ' + ctrl.yue);
@@ -248,7 +249,7 @@
                             alert("请输入金额");
                             return;
                         }
-                        $.ajax({
+                        !ctrl.isPost && $.ajax({
                             url: "/charge/addusercharge",
                             type: "POST",
                             data: {
@@ -261,6 +262,7 @@
                             success: function (data) {
                                 event.typesHide();
                                 event.cancel();
+                                ctrl.isPost = false;
                                 if (data.status == 0) {
                                     ctrl.getNote();
 //                                    alert("操作成功");
@@ -269,6 +271,7 @@
                                 }
                             }
                         })
+                        ctrl.isPost=true;
                     },
                     getNote: function () {
                         $.ajax({
